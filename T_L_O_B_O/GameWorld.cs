@@ -11,11 +11,28 @@ namespace T_L_O_B_O
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        private static GameWorld instance = new GameWorld();
 
-        public GameWorld()
+
+        public static GameWorld GetInstance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new GameWorld();
+                }
+                return instance;
+            }
+        }
+
+
+
+        private GameWorld()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            
         }
 
         /// <summary>
