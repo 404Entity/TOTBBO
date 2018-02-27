@@ -1,7 +1,12 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Content;
 
 namespace T_L_O_B_O
 {
@@ -13,8 +18,10 @@ namespace T_L_O_B_O
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         static GameWorld instance = new GameWorld();
-        List<GameObject> gameObjectList;
+        List<GameObject> goList;
         GameObject gameObject;
+        ContentManager content;
+
 
         public static GameWorld GetInstance
         {
@@ -45,19 +52,16 @@ namespace T_L_O_B_O
         /// </summary>
         protected override void Initialize()
         {
-            gameObjectList = new List<GameObject>();
+            goList = new List<GameObject>();
             // TODO: Add your initialization logic here
 
+            GameObject go = new GameObject();
 
+            go.AddComponent(new SpriteRenderer(go, "stringName", 1));
+            go.AddComponent(new Player(go));
+            go.AddComponent(new Animator(go));
 
-
-
-
-
-
-
-
-
+            goList.Add(go);
 
             base.Initialize();
         }
@@ -70,9 +74,13 @@ namespace T_L_O_B_O
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            foreach (GameObject c in gameObjectList)
+            foreach (GameObject c in goList)
             {
+                
 
+
+
+                gameObject.LoadContent(content);
             }
 
             // TODO: use this.Content to load your game content here
@@ -99,15 +107,15 @@ namespace T_L_O_B_O
 
             // TODO: Add your update logic here
 
-            foreach (GameObject c in gameObjectList)
+            foreach (GameObject c in goList)
             {
 
+
+
+
+                gameObject.Update(gameTime);
             }
-
-
-
-
-
+            
             base.Update(gameTime);
         }
 
@@ -121,13 +129,14 @@ namespace T_L_O_B_O
 
             // TODO: Add your drawing code here
 
-            foreach (GameObject c in gameObjectList)
+            foreach (GameObject c in goList)
             {
 
+
+
+                gameObject.Draw(spriteBatch);
             }
-
-
-
+            
             base.Draw(gameTime);
         }
 

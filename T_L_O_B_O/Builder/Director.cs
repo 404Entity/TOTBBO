@@ -10,9 +10,18 @@ using Microsoft.Xna.Framework.Content;
 
 namespace T_L_O_B_O
 {
-    interface IDrawable
+    class Director
     {
+        IBuilder builder;
 
-        void Draw(SpriteBatch spriteBatch);
+        public Director(IBuilder builder)
+        {
+            this.builder = builder;
+        }
+        
+        public void Construct(Vector2 position)
+        {
+
+        }
     }
 }

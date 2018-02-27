@@ -10,9 +10,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace T_L_O_B_O
 {
-    interface IDrawable
+    class ScissorBuilder:IBuilder
     {
-
-        void Draw(SpriteBatch spriteBatch);
     }
 }
