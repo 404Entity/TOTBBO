@@ -13,5 +13,15 @@ namespace T_L_O_B_O
 
     class GameObject : Component
     {
+        List<Component> components = new List<Component>();
+        Transform transform;
+
+        public GameObject()
+        {
+        }
+
+        public Transform Transform { get => transform; set => transform = value; }
+
+        public Add
     }
 }

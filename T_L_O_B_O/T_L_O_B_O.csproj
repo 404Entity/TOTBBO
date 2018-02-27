@@ -41,9 +41,16 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Attack.cs" />
+    <Compile Include="Climb.cs" />
     <Compile Include="Component.cs" />
+    <Compile Include="Detect.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="GameWorld.cs" />
+    <Compile Include="Interfaces\ICollideExit.cs" />
+    <Compile Include="Interfaces\ICollideEnter.cs" />
+    <Compile Include="Interfaces\ICollideStay.cs" />
+    <Compile Include="Idle.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
     <Compile Include="Interfaces\IAnimateable.cs" />
     <Compile Include="Interfaces\ILoadable.cs" />
@@ -51,6 +58,7 @@
     <Compile Include="Interfaces\IUpdateable.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Walk.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
