@@ -12,5 +12,7 @@ namespace T_L_O_B_O
 {
     interface IBuilder
     {
+        void BuildGameOBject(Vector2 position);
+        GameObject GetResult();
     }
 }
