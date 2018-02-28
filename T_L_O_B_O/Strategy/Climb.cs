@@ -21,7 +21,7 @@ namespace T_L_O_B_O
 
         public void Execute(DIRECTION direction)
         {
-            throw new NotImplementedException();
+            animator.PlayAnimation("Climb" + direction);
         }
     }
 }

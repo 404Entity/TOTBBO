@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace T_L_O_B_O
 {
-    class SpriteRenderer:Component
+    class SpriteRenderer:Component, IDrawable,IUpdateable,ILoadable
     {
         Rectangle rectangle;
         Texture2D texture2D;
@@ -23,6 +23,7 @@ namespace T_L_O_B_O
         {
             this.spriteName = spriteName;
             this.layerDepth = layerDepth;
+            this.gameObject = gameObject;
         }
 
         public Vector2 Offset { get => offset; set => offset = value; }
@@ -43,7 +44,7 @@ namespace T_L_O_B_O
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture2D, gameObject.Transform.GetTransform, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
+            spriteBatch.Draw(texture2D, gameObject.Transform.GetTransform, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, layerDepth);
         }
 
     }

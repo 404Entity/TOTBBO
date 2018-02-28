@@ -21,6 +21,7 @@ namespace T_L_O_B_O
         string animationName;
         Dictionary<string, Animation> animations = new Dictionary<string, Animation>();
 
+        #endregion
         #region constructers
         public Animator(GameObject gameObject): base(gameObject)
         {
@@ -29,7 +30,7 @@ namespace T_L_O_B_O
 
 
 
-        #endregion
+        
         #endregion
 
 
@@ -57,6 +58,11 @@ namespace T_L_O_B_O
         public void CreateAnimation(string name, Animation animation)
         {
 
+        }
+
+        public void PlayAnimation(string animationName)
+        {
+            this.animationName = animationName;
         }
 
 

@@ -20,7 +20,6 @@ namespace T_L_O_B_O
         static GameWorld instance = new GameWorld();
         List<GameObject> goList;
         GameObject gameObject;
-        ContentManager content;
 
 
         public static GameWorld GetInstance
@@ -57,7 +56,7 @@ namespace T_L_O_B_O
 
             GameObject go = new GameObject();
 
-            go.AddComponent(new SpriteRenderer(go, "stringName", 1));
+            go.AddComponent(new SpriteRenderer(go, "1", 1));
             go.AddComponent(new Player(go));
             go.AddComponent(new Animator(go));
 
@@ -80,7 +79,7 @@ namespace T_L_O_B_O
 
 
 
-                gameObject.LoadContent(content);
+                c.LoadContent(Content);
             }
 
             // TODO: use this.Content to load your game content here
@@ -113,7 +112,7 @@ namespace T_L_O_B_O
 
 
 
-                gameObject.Update(gameTime);
+                c.Update(gameTime);
             }
             
             base.Update(gameTime);
@@ -129,13 +128,15 @@ namespace T_L_O_B_O
 
             // TODO: Add your drawing code here
 
+            spriteBatch.Begin();
             foreach (GameObject c in goList)
             {
 
 
 
-                gameObject.Draw(spriteBatch);
+                c.Draw(spriteBatch);
             }
+            spriteBatch.End();
             
             base.Draw(gameTime);
         }

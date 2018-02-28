@@ -12,13 +12,18 @@ namespace T_L_O_B_O
 {
     enum DIRECTION
     {
-        Left, Right, Jump, Climb
+        Left, Right, Jump, Climb,
     }
 
     class GameObject : Component
     {
         List<Component> components = new List<Component>();
         Transform transform;
+
+        public GameObject(GameObject gameObject)
+        {
+
+        }
 
         public GameObject()
         {

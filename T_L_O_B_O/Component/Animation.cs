@@ -18,7 +18,7 @@ namespace T_L_O_B_O
 
         public Animation(float fps, Vector2 offset, int frames, int yPos, int xStratFrame,int width, int height)
         {
-            Fps = fps;
+            this.fps = fps;
             Offset = offset;
             Frames = frames;
             YPos = yPos;
@@ -27,12 +27,14 @@ namespace T_L_O_B_O
             Height = height;
         }
 
-        public float Fps { get => fps; set => fps = value; }
+        
         public Vector2 Offset { get => offset; set => offset = value; }
         public int Frames { get; }
         public int YPos { get; }
         public int XStratFrame { get; }
         public int Width { get; }
         public int Height { get; }
+        public float Fps { get => fps; }
+        public Rectangle[] Rectangles { get => rectangles; }
     }
 }
