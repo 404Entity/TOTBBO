@@ -12,14 +12,17 @@ namespace T_L_O_B_O
 {
     class Transform:Component
     {
-        Vector2 position;
+        protected Vector2 position;
 
-        public Transform(Vector2 transform, GameObject gameObject)
+        public Vector2 Position
         {
-            this.position = transform;
+            get { return position; }
+            set { position = value; }
         }
-
-        public Vector2 GetTransform { get => position; set => position = value; }
+        public Transform(GameObject gameObject, Vector2 position)
+        {
+            this.position = position;
+        }
 
         public void Translate(Vector2 translation)
         {

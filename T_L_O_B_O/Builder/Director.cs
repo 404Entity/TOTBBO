@@ -19,9 +19,10 @@ namespace T_L_O_B_O
             this.builder = builder;
         }
         
-        public void Construct(Vector2 position)
+        public GameObject Construct(Vector2 position)
         {
-
+            builder.BuildGameOBject(position);
+            return builder.GetResult();
         }
     }
 }
