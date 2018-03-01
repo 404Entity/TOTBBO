@@ -20,6 +20,7 @@ namespace T_L_O_B_O
 
         public Player(GameObject gameObject)
         {
+            
         }
 
         public void Update()
@@ -42,10 +43,10 @@ namespace T_L_O_B_O
                 {
                     strategy = new Attack(animator);
                 }
-                if (keyState.IsKeyDown(Keys.Space))
-                {
-                    strategy = new Jump(animator);
-                }
+                //if (keyState.IsKeyDown(Keys.Space))
+                //{
+                //    strategy = new Jump(animator);
+                //}
             }
         }
 

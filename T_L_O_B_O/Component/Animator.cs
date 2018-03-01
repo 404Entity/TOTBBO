@@ -26,7 +26,7 @@ namespace T_L_O_B_O
         public Animator(GameObject gameObject): base(gameObject)
         {
             fps = 5;
-            this.spriteRenderer = (SpriteRenderer)gameObject.GetComponent("SpriteRenderer");
+            spriteRenderer = (SpriteRenderer)gameObject.GetComponent("SpriteRenderer");
         }
 
 
