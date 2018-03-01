@@ -12,7 +12,7 @@ namespace T_L_O_B_O
 {
     enum DIRECTION
     {
-        Left, Right, Jump, Climb,
+        Left, Right, Back, Front
     }
 
     class GameObject : Component

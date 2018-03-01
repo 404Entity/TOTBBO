@@ -53,14 +53,8 @@ namespace T_L_O_B_O
         {
             goList = new List<GameObject>();
             // TODO: Add your initialization logic here
-
-            GameObject go = new GameObject();
-
-            go.AddComponent(new SpriteRenderer(go, "HeroStrip", 1, 0.1f));
-            go.AddComponent(new Player(go));
-            go.AddComponent(new Animator(go));
-
-            goList.Add(go);
+            Director director = new Director(new PlayerBuilder());
+            goList.Add(director.Construct(Vector2.One));
 
             base.Initialize();
         }

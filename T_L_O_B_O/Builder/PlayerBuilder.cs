@@ -20,10 +20,11 @@ public void BuildGameOBject(Vector2 position)
             /// </summary>
             GameObject Player = new GameObject();
             Player.AddComponent(new Transform(Player,position));
-            Player.AddComponent(new SpriteRenderer(Player, "Missing", 1, 0.5f));
+            Player.AddComponent(new SpriteRenderer(Player, "HeroSheet", 1, 0.5f));
             Player.AddComponent(new Animator(Player));
             Player.AddComponent(new Player(Player));
             Player.AddComponent(new Collider(Player, true));
+            Player.LoadContent(GameWorld.GetInstance.Content);
             buildObject = Player;
         }
 

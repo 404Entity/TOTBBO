@@ -10,41 +10,43 @@ using Microsoft.Xna.Framework.Content;
 
 namespace T_L_O_B_O
 {
-    class SpriteRenderer:Component, IDrawable,IUpdateable,ILoadable
+    class SpriteRenderer:Component ,IDrawable,ILoadable
     {
-        Rectangle rectangle;
-        Texture2D texture2D;
-        string spriteName;
-        float layerDepth;
-        GameObject gameObject;
-        Vector2 offset;
-        float scale;
-
-        public SpriteRenderer(GameObject gameObject, string spriteName, float layerDepth, float scale): base(gameObject)
+        private Rectangle rectangle;
+        private Texture2D sprite;
+        private float scale;
+        private Vector2 offset;
+        public Vector2 Offset
         {
-            this.spriteName = spriteName;
+            get { return offset; }
+            set { offset = value; }
+        }
+        public Texture2D Sprite
+        {
+            get { return sprite; }
+            set { sprite = value; }
+        }
+        private string spriteName;
+        private float layerDepth;
+
+        public Rectangle Rectangle
+        {
+            get { return rectangle; }
+            set { rectangle = value; }
+        }
+        public SpriteRenderer(GameObject gameobject, string spriteName, float layerDepth, float scale) : base(gameobject)
+        {
             this.layerDepth = layerDepth;
-            this.gameObject = gameObject;
+            this.spriteName = spriteName;
             this.scale = scale;
         }
-
-        public Vector2 Offset { get => offset; set => offset = value; }
-        public Rectangle Rectangle { get => rectangle; set => rectangle = value; }
-        public Texture2D Texture2D { get => texture2D; set => texture2D = value; }
-
-        public void Update()
-        {
-
-        }
-
         public void LoadContent(ContentManager content)
         {
-            Texture2D = content.Load<Texture2D>(spriteName);
+            sprite = content.Load<Texture2D>(spriteName);
         }
-
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture2D, gameObject.Transform.Position, null, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, layerDepth);
+            spriteBatch.Draw(sprite, GameObject.Transform.Position + offset, rectangle, Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, layerDepth);
         }
 
     }

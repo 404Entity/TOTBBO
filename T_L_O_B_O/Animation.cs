@@ -12,29 +12,33 @@ namespace T_L_O_B_O
 {
     class Animation
     {
-        float fps;
-        Vector2 offset;
-        Rectangle[] rectangles;
-
-        public Animation(float fps, Vector2 offset, int frames, int yPos, int xStratFrame,int width, int height)
+        private float fps;
+        private Vector2 offset;
+        private Rectangle[] rectangles;
+        public float Fps
         {
-            this.fps = fps;
-            Offset = offset;
-            Frames = frames;
-            YPos = yPos;
-            XStratFrame = xStratFrame;
-            Width = width;
-            Height = height;
+            get { return fps; }
+            set { fps = value; }
         }
-
-        
-        public Vector2 Offset { get => offset; set => offset = value; }
-        public int Frames { get; }
-        public int YPos { get; }
-        public int XStratFrame { get; }
-        public int Width { get; }
-        public int Height { get; }
-        public float Fps { get => fps; }
-        public Rectangle[] Rectangles { get => rectangles; }
+        public Vector2 Offset
+        {
+            get { return offset; }
+            set { offset = value; }
+        }
+        public Rectangle[] Rectangles
+        {
+            get { return rectangles; }
+            set { rectangles = value; }
+        }
+        public Animation(int frames, int yPos, int xStartFrame, int width, int height, int fps, Vector2 offset)
+        {
+            Rectangles = new Rectangle[frames];
+            Offset = offset;
+            this.Fps = fps;
+            for (int i = 0; i < frames; i++)
+            {
+                Rectangles[i] = new Rectangle((i + xStartFrame) * width, yPos, width, height);
+            }
+        }
     }
 }
