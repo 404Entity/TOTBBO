@@ -1,99 +1,119 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework.Content;
-
-namespace T_L_O_B_O
+using Microsoft.Xna.Framework.Graphics;
+namespace Gametut
 {
-    enum DIRECTION
+    class GameObject : Component, IAnimateable, ICollisionStay, ICollisionEnter,ICollisionExit
     {
-        Left, Right, Back, Front
-    }
-
-    class GameObject : Component
-    {
-        List<Component> components = new List<Component>();
-        Transform transform;
-
-        public GameObject(GameObject gameObject)
+        //Fields
+        private List<Component> components;
+        private bool isLoaded;
+        private Transform transform;
+        public Transform Transform
         {
-
+            get { return transform; }
+            set { transform = value; }
         }
-
+        //Constructor
         public GameObject()
         {
-            transform = new Transform(this, Vector2.One);
-
-            components.Add(transform);
+            components = new List<Component>();
+            isLoaded = false;
         }
 
-        public Transform Transform { get => transform; set => transform = value; }
-
+        //Methods
         public void AddComponent(Component component)
         {
             components.Add(component);
         }
-
         public Component GetComponent(string component)
         {
-            Component _return = null;
-            foreach (Component com in components)
+            Component returnComponent = null;
+            foreach (Component comp in components)
             {
-                if (com.GetType().Name == component)
+                if (comp.GetType().ToString().ToLower().Contains(component.ToLower()))
                 {
-                    _return = com;
+                    returnComponent = comp;
                     break;
                 }
             }
-            return _return;
+            return returnComponent;
         }
-
         public void LoadContent(ContentManager content)
         {
-            foreach (Component com in components)
+            if (!isLoaded)
             {
-                if (com is ILoadable)
+                foreach (Component component in components)
                 {
-                    (com as ILoadable).LoadContent(content);
+                    if (component is ILoadable)
+                    {
+                        (component as ILoadable).LoadContent(content);
+                    }
                 }
+                isLoaded = true;
             }
+            
         }
-
         public void Update(GameTime gameTime)
         {
-            foreach (Component com in components)
+            foreach (Component component in components)
             {
-                if (com is IUpdateable)
+                if (component is IUpdateable)
                 {
-                    (com as IUpdateable).Update();
+                    (component as IUpdateable).Update();
                 }
             }
         }
-
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach (Component com in components)
+            foreach (Component component in components)
             {
-                if (com is IDrawable)
+                if (component is IDrawable)
                 {
-                    (com as IDrawable).Draw(spriteBatch);
+                    (component as IDrawable).Draw(spriteBatch);
                 }
             }
         }
 
         public void OnAnimationDone(string animationName)
         {
-            foreach (Component com in components)
+            foreach (Component component in components)
             {
-                if (com is IAnimateable)
+                if (component is IAnimateable)
                 {
-                    (com as IAnimateable).OnAnimationDone(animationName);
+                    (component as IAnimateable).OnAnimationDone(animationName);
                 }
+            }
+        }
+        public void OnCollisionStay(Collider other)
+        {
+            foreach (Component component in components)
+            {
+                if (component is ICollisionStay)
+                {
+                    (component as ICollisionStay).OnCollisionStay(other);
+                }
+            }
+        }
+
+        public void OnCollisionExit(Collider other)
+        {
+            foreach(Component component in components)
+            {
+                (component as ICollisionExit).OnCollisionExit(other);
+            }
+        }
+
+        public void OnCollisionEnter(Collider other)
+        {
+            foreach (Component component in components)
+            {
+                (component as ICollisionEnter).OnCollisionEnter(other);
             }
         }
     }

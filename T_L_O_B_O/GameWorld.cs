@@ -1,14 +1,8 @@
-﻿using System;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework.Content;
-
-namespace T_L_O_B_O
+namespace Gametut
 {
     /// <summary>
     /// This is the main type for your game.
@@ -17,12 +11,25 @@ namespace T_L_O_B_O
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        static GameWorld instance = new GameWorld();
-        List<GameObject> goList;
-        GameObject gameObject;
-        float deltaTime;
+        static private List<GameObject> gameObjectList;
+        List<GameObject> removeList;
+        internal List<GameObject> RemoveList
+        {
+            get { return removeList; }
+            set { removeList = value; }
+        }
+        private List<GameObject> addList;
+        internal List<GameObject> AddList { get { return addList; } set { addList = value; } }
+        private List<Collider> colliders;
+        internal List<Collider> Colliders
+        {
+            get { return colliders; }
+        }
+        public float deltaTime;
+        private EnemyPool enemypool;
 
-        public static GameWorld GetInstance
+        static private GameWorld instance;
+        static public GameWorld Instance
         {
             get
             {
@@ -33,14 +40,11 @@ namespace T_L_O_B_O
                 return instance;
             }
         }
-
-        public float DeltaTime { get => deltaTime; }
-
+        //construcktor
         private GameWorld()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            
         }
 
         /// <summary>
@@ -51,11 +55,14 @@ namespace T_L_O_B_O
         /// </summary>
         protected override void Initialize()
         {
-            goList = new List<GameObject>();
             // TODO: Add your initialization logic here
+            gameObjectList = new List<GameObject>();
+            removeList = new List<GameObject>();
+            addList = new List<GameObject>();
+            colliders = new List<Collider>();
+            enemypool = new EnemyPool();
             Director director = new Director(new PlayerBuilder());
-            goList.Add(director.Construct(Vector2.One));
-
+            gameObjectList.Add(director.Construct(Vector2.Zero));
             base.Initialize();
         }
 
@@ -67,13 +74,10 @@ namespace T_L_O_B_O
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            foreach (GameObject c in goList)
+
+            foreach (GameObject item in gameObjectList)
             {
-                
-
-
-
-                c.LoadContent(Content);
+                item.LoadContent(Content);
             }
 
             // TODO: use this.Content to load your game content here
@@ -86,6 +90,7 @@ namespace T_L_O_B_O
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
+
         }
 
         /// <summary>
@@ -95,21 +100,42 @@ namespace T_L_O_B_O
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
-            // TODO: Add your update logic here
-
-            foreach (GameObject c in goList)
+            if (Keyboard.GetState().IsKeyDown(Keys.N))
             {
-
-
-
-
-                c.Update(gameTime);
+               AddList.Add(enemypool.Create());
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.M))
+            {
+                foreach (GameObject item in gameObjectList)
+                {
+                    if ((item.GetComponent("Enemy") != null))
+                    {
+                       enemypool.ReleaseObject(item);
+                       break;
+                    }
+                }
             }
 
-            deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            foreach (GameObject item in gameObjectList)
+            {
+                item.Update(gameTime);
+            }
+            foreach (GameObject item in addList)
+            {
+                item.LoadContent(Content);
+                gameObjectList.Add(item);
+            }
+            addList.Clear();
+            foreach (GameObject item in removeList)
+            {
+                gameObjectList.Remove(item);
+            }
+            removeList.Clear();
+            // TODO: Add your update logic here
+
             base.Update(gameTime);
         }
 
@@ -122,20 +148,13 @@ namespace T_L_O_B_O
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-
             spriteBatch.Begin();
-            foreach (GameObject c in goList)
+            foreach (GameObject item in gameObjectList)
             {
-
-
-
-                c.Draw(spriteBatch);
+                item.Draw(spriteBatch);
             }
             spriteBatch.End();
-            
             base.Draw(gameTime);
         }
-
-
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace T_L_O_B_O
+namespace Gametut
 {
 #if WINDOWS || LINUX
     /// <summary>
@@ -14,7 +14,7 @@ namespace T_L_O_B_O
         [STAThread]
         static void Main()
         {
-            using (var game = GameWorld.GetInstance)
+            using (var game = GameWorld.Instance)
                 game.Run();
         }
     }
