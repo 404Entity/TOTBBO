@@ -20,8 +20,7 @@ namespace T_L_O_B_O
         static GameWorld instance = new GameWorld();
         List<GameObject> goList;
         GameObject gameObject;
-        ContentManager content;
-
+        float deltaTime;
 
         public static GameWorld GetInstance
         {
@@ -35,7 +34,7 @@ namespace T_L_O_B_O
             }
         }
 
-
+        public float DeltaTime { get => deltaTime; }
 
         private GameWorld()
         {
@@ -57,7 +56,7 @@ namespace T_L_O_B_O
 
             GameObject go = new GameObject();
 
-            go.AddComponent(new SpriteRenderer(go, "stringName", 1));
+            go.AddComponent(new SpriteRenderer(go, "HeroStrip", 1, 0.1f));
             go.AddComponent(new Player(go));
             go.AddComponent(new Animator(go));
 
@@ -80,7 +79,7 @@ namespace T_L_O_B_O
 
 
 
-                gameObject.LoadContent(content);
+                c.LoadContent(Content);
             }
 
             // TODO: use this.Content to load your game content here
@@ -113,9 +112,10 @@ namespace T_L_O_B_O
 
 
 
-                gameObject.Update(gameTime);
+                c.Update(gameTime);
             }
-            
+
+            deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             base.Update(gameTime);
         }
 
@@ -129,13 +129,15 @@ namespace T_L_O_B_O
 
             // TODO: Add your drawing code here
 
+            spriteBatch.Begin();
             foreach (GameObject c in goList)
             {
 
 
 
-                gameObject.Draw(spriteBatch);
+                c.Draw(spriteBatch);
             }
+            spriteBatch.End();
             
             base.Draw(gameTime);
         }

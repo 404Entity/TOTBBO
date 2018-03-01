@@ -10,14 +10,14 @@ namespace T_L_O_B_O
     {
         Animator animator;
 
-        public Idle()
+        public Idle(Animator animator)
         {
             this.animator = animator;
         }
 
         public void Execute(DIRECTION direction)
         {
-            throw new NotImplementedException();
+            animator.PlayAnimation("Idle" + direction);
         }
     }
 }

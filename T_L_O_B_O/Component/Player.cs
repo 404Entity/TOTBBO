@@ -10,13 +10,13 @@ using Microsoft.Xna.Framework.Content;
 
 namespace T_L_O_B_O
 {
-    class Player:Component
+    class Player:Component, IUpdateable
     {
         float speed;
         Animator animator;
         IStrategy strategy;
         DIRECTION direction;
-        bool canMove;
+        bool canMove = true;
 
         public Player(GameObject gameObject)
         {
@@ -24,7 +24,29 @@ namespace T_L_O_B_O
 
         public void Update()
         {
-
+            KeyboardState keyState = Keyboard.GetState();
+            if (canMove)
+            {
+                if (keyState.IsKeyDown(Keys.A) || keyState.IsKeyDown(Keys.D))
+                {
+                    if (!(strategy is Walk))
+                    {
+                        strategy = new Walk(animator, GameObject.Transform);
+                    }
+                }
+                else
+                {
+                    strategy = new Idle(animator);
+                }
+                if (keyState.IsKeyDown(Keys.E))
+                {
+                    strategy = new Attack(animator);
+                }
+                if (keyState.IsKeyDown(Keys.Space))
+                {
+                    strategy = new Jump(animator);
+                }
+            }
         }
 
         public void LoadContent(ContentManager content)

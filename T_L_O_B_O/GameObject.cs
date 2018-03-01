@@ -12,7 +12,7 @@ namespace T_L_O_B_O
 {
     enum DIRECTION
     {
-        Left, Right, Jump, Climb
+        Left, Right, Jump, Climb,
     }
 
     class GameObject : Component
@@ -20,9 +20,14 @@ namespace T_L_O_B_O
         List<Component> components = new List<Component>();
         Transform transform;
 
+        public GameObject(GameObject gameObject)
+        {
+
+        }
+
         public GameObject()
         {
-            transform = new Transform(Vector2.One, this);
+            transform = new Transform(this, Vector2.One);
 
             components.Add(transform);
         }

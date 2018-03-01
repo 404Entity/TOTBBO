@@ -9,15 +9,17 @@ namespace T_L_O_B_O
     class Walk:IStrategy
     {
         Animator animator;
+        Transform transform;
 
-        public Walk(Animator animator)
+        public Walk(Animator animator, Transform transform)
         {
             this.animator = animator;
+            this.transform = transform;
         }
 
         public void Execute(DIRECTION direction)
         {
-            throw new NotImplementedException();
+            animator.PlayAnimation("Walk" + direction);
         }
     }
 }
