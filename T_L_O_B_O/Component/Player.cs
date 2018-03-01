@@ -1,15 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework.Content;
-
+using Microsoft.Xna.Framework.Input;
 namespace T_L_O_B_O
 {
+    enum DIRECTION {Back,Right,Front,Left};
     class Player : Component, IUpdateable, ILoadable, IAnimateable
     {
         #region Fields
@@ -39,7 +39,7 @@ namespace T_L_O_B_O
             KeyboardState keyState = Keyboard.GetState();
             if (canMove)
             {
-                if (keyState.IsKeyDown(Keys.W) || keyState.IsKeyDown(Keys.D) || keyState.IsKeyDown(Keys.S) || keyState.IsKeyDown(Keys.A))
+                if (keyState.IsKeyDown(Keys.W) || keyState.IsKeyDown(Keys.D)||keyState.IsKeyDown(Keys.S)||keyState.IsKeyDown(Keys.A))
                 {
                     if (keyState.IsKeyDown(Keys.W))
                     {
@@ -59,7 +59,7 @@ namespace T_L_O_B_O
                     }
                     if (!(strategy is Walk))
                     {
-                        strategy = new Walk(animator, GameObject.Transform, speed);
+                        strategy = new Walk(animator,gameObject.Transform,speed);
                     }
                 }
                 else
@@ -73,7 +73,7 @@ namespace T_L_O_B_O
                 strategy.Execute(direction);
             }
 
-
+       
         }
         public void CreateAnimation()
         {

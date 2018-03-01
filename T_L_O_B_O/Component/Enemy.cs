@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework;
 
-namespace Gametut
+namespace T_L_O_B_O
 {
     class Enemy : Component, ILoadable, IAnimateable, IUpdateable
     {
@@ -43,7 +43,7 @@ namespace Gametut
             animator.CreateAnimation("DieFront", new Animation(4, 300, 4, 100, 100, 5, Vector2.Zero));
             animator.CreateAnimation("DieLeft", new Animation(4, 400, 0, 100, 100, 5, Vector2.Zero));
             animator.CreateAnimation("DieRight", new Animation(4, 400, 4, 100, 100, 5, Vector2.Zero));
-            animator.playAnimation("IdleFront");
+            animator.PlayAnimation("IdleFront");
         }
 
         public void OnAnimationDone(string animationName)

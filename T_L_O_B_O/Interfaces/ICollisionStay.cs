@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gametut
+namespace T_L_O_B_O
 {
-    interface IAnimateable
+    interface ICollisionStay
     {
-        void OnAnimationDone(string animationName);
+        void OnCollisionStay(Collider other);
     }
 }

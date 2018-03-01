@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 
-namespace Gametut
+namespace T_L_O_B_O
 {
     class EnemyBuilder : IBuilder
     {
@@ -14,7 +14,7 @@ namespace Gametut
         {
             GameObject slime = new GameObject();
             slime.AddComponent(new Transform(slime, position));
-            slime.AddComponent(new SpriteRender(slime, "SlimeSheet", 1));
+            slime.AddComponent(new SpriteRenderer(slime, "SlimeSheet", 1));
             slime.AddComponent(new Animator(slime));
             slime.AddComponent(new Enemy(slime));
             slime.LoadContent(GameWorld.Instance.Content);

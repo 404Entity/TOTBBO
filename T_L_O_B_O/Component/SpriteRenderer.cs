@@ -1,20 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace T_L_O_B_O
 {
-    class SpriteRenderer:Component ,IDrawable,ILoadable
+    class SpriteRenderer: Component, ILoadable, IDrawable
     {
         private Rectangle rectangle;
         private Texture2D sprite;
-        private float scale;
         private Vector2 offset;
         public Vector2 Offset
         {
@@ -34,11 +32,10 @@ namespace T_L_O_B_O
             get { return rectangle; }
             set { rectangle = value; }
         }
-        public SpriteRenderer(GameObject gameobject, string spriteName, float layerDepth, float scale) : base(gameobject)
+        public SpriteRenderer(GameObject gameobject, string spriteName, float layerDepth) : base(gameobject)
         {
             this.layerDepth = layerDepth;
             this.spriteName = spriteName;
-            this.scale = scale;
         }
         public void LoadContent(ContentManager content)
         {
@@ -46,8 +43,7 @@ namespace T_L_O_B_O
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(sprite, GameObject.Transform.Position + offset, rectangle, Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, layerDepth);
+            spriteBatch.Draw(sprite, GameObject.Transform.Position + offset,rectangle, Color.White,0,Vector2.Zero,1,SpriteEffects.None,layerDepth);
         }
-
     }
 }

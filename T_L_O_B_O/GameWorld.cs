@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
-namespace Gametut
+namespace T_L_O_B_O
 {
     /// <summary>
     /// This is the main type for your game.

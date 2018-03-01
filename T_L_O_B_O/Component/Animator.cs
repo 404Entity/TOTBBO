@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework;
+
 
 namespace T_L_O_B_O
 {
-    class Animator: Component, IUpdateable
+    class Animator : Component, IUpdateable
     {
         private SpriteRenderer spriteRenderer;
         public SpriteRenderer SpriteRenderer
@@ -30,25 +31,25 @@ namespace T_L_O_B_O
         }
         private string animationName;
         private Dictionary<string, Animation> animations;
-        public Dictionary<string, Animation> MyAnimations
+        public Dictionary<string,Animation> MyAnimations
         {
             get { return animations; }
         }
         public Animator(GameObject gameObject) : base(gameObject)
         {
-            fps = 4;
-            this.spriteRenderer = (SpriteRenderer)gameObject.GetComponent("SpriteRenderer");
+                fps = 4;
+            this.spriteRenderer = (SpriteRenderer)GameObject.GetComponent("SpriteRenderer");
             animations = new Dictionary<string, Animation>();
         }
 
         public void Update()
         {
-            timeElapsed += GameWorld.GetInstance.DeltaTime;
+            timeElapsed += GameWorld.Instance.deltaTime;
             currentIndex = (int)(timeElapsed * fps);
 
             if (currentIndex > rectangles.Length - 1)
             {
-                GameObject.OnAnimationDone(animationName);
+                gameObject.OnAnimationDone(animationName);
                 timeElapsed = 0;
                 currentIndex = 0;
             }
@@ -77,8 +78,7 @@ namespace T_L_O_B_O
                 timeElapsed = 0;
 
                 currentIndex = 0;
-            }
+            }   
         }
     }
 }
-
