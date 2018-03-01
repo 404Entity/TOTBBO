@@ -6,18 +6,17 @@ using System.Threading.Tasks;
 
 namespace T_L_O_B_O
 {
-    class Idle:IStrategy
+    class Idle : IStrategy
     {
-        Animator animator;
-
+        private Animator animator;
         public Idle(Animator animator)
         {
             this.animator = animator;
         }
 
-        public void Execute(DIRECTION direction)
+        public void Execute(DIRECTION ref_direction)
         {
-            animator.PlayAnimation("Idle" + direction);
+            animator.PlayAnimation("Idle" + ref_direction);
         }
     }
 }
