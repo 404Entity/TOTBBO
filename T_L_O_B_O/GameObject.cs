@@ -27,7 +27,7 @@ namespace T_L_O_B_O
 
         public GameObject()
         {
-            transform = new Transform(Vector2.One, this);
+            transform = new Transform(this, Vector2.One);
 
             components.Add(transform);
         }

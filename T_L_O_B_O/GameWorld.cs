@@ -20,7 +20,7 @@ namespace T_L_O_B_O
         static GameWorld instance = new GameWorld();
         List<GameObject> goList;
         GameObject gameObject;
-
+        float deltaTime;
 
         public static GameWorld GetInstance
         {
@@ -34,7 +34,7 @@ namespace T_L_O_B_O
             }
         }
 
-
+        public float DeltaTime { get => deltaTime; }
 
         private GameWorld()
         {
@@ -56,7 +56,7 @@ namespace T_L_O_B_O
 
             GameObject go = new GameObject();
 
-            go.AddComponent(new SpriteRenderer(go, "1", 1));
+            go.AddComponent(new SpriteRenderer(go, "HeroStrip", 1, 0.1f));
             go.AddComponent(new Player(go));
             go.AddComponent(new Animator(go));
 
@@ -114,7 +114,8 @@ namespace T_L_O_B_O
 
                 c.Update(gameTime);
             }
-            
+
+            deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             base.Update(gameTime);
         }
 

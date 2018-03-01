@@ -28,7 +28,7 @@ namespace T_L_O_B_O
         {
             get
             {
-                return new Rectangle((int)(GameObject.Transform.GetTransform.X + spriteRenderer.Offset.X), (int)(GameObject.Transform.GetTransform.Y + spriteRenderer.Offset.Y), spriteRenderer.Rectangle.Width, spriteRenderer.Rectangle.Height);
+                return new Rectangle((int)(GameObject.Transform.Position.X + spriteRenderer.Offset.X), (int)(GameObject.Transform.Position.Y + spriteRenderer.Offset.Y), spriteRenderer.Rectangle.Width, spriteRenderer.Rectangle.Height);
             }
         }
 
