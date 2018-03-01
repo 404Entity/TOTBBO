@@ -34,7 +34,7 @@ namespace T_L_O_B_O
 
         public void Update()
         {
-
+            
         }
 
         public void LoadContent(ContentManager content)
@@ -44,7 +44,7 @@ namespace T_L_O_B_O
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture2D, gameObject.Transform.GetTransform, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, layerDepth);
+            spriteBatch.Draw(texture2D, gameObject.Transform.Position, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, layerDepth);
         }
 
     }
