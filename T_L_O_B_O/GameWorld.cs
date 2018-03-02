@@ -11,15 +11,25 @@ namespace T_L_O_B_O
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        public static int ScreenWidth;
+        public static int ScreenHeight;
+        private Camera camera;
+
+
+        // the Primary source for objects in the game 
         static private List<GameObject> gameObjectList;
+        // The Remove list allows of to remove gameobject from the gameobject list
         List<GameObject> removeList;
         internal List<GameObject> RemoveList
         {
             get { return removeList; }
             set { removeList = value; }
         }
+        // the Addlist allows us to add objects to the gameobject list
         private List<GameObject> addList;
         internal List<GameObject> AddList { get { return addList; } set { addList = value; } }
+
         private List<Collider> colliders;
         internal List<Collider> Colliders
         {
@@ -28,6 +38,7 @@ namespace T_L_O_B_O
         public float deltaTime;
         private EnemyPool enemypool;
 
+        // sets the gameworld in a singletom Pattern(only allow one instance of the gameworld class)
         static private GameWorld instance;
         static public GameWorld Instance
         {
@@ -56,6 +67,8 @@ namespace T_L_O_B_O
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            ScreenHeight = graphics.PreferredBackBufferHeight;
+            ScreenWidth = graphics.PreferredBackBufferWidth;
             gameObjectList = new List<GameObject>();
             removeList = new List<GameObject>();
             addList = new List<GameObject>();
@@ -74,7 +87,7 @@ namespace T_L_O_B_O
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            camera = new Camera();
             foreach (GameObject item in gameObjectList)
             {
                 item.LoadContent(Content);
@@ -122,6 +135,11 @@ namespace T_L_O_B_O
             foreach (GameObject item in gameObjectList)
             {
                 item.Update(gameTime);
+                if (item is Player)
+                {
+                    SpriteRenderer thatthing = (SpriteRenderer)item.GetComponent("Spriterenderer");
+                    camera.Follow(item,thatthing);
+                }
             }
             foreach (GameObject item in addList)
             {
@@ -135,7 +153,7 @@ namespace T_L_O_B_O
             }
             removeList.Clear();
             // TODO: Add your update logic here
-
+  
             base.Update(gameTime);
         }
 
@@ -154,6 +172,10 @@ namespace T_L_O_B_O
                 item.Draw(spriteBatch);
             }
             spriteBatch.End();
+            spriteBatch.Begin(transformMatrix: camera.Transform);
+
+            spriteBatch.End();
+           
             base.Draw(gameTime);
         }
     }
