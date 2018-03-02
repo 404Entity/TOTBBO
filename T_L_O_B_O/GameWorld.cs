@@ -2,6 +2,10 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Threading;
+
+
 namespace T_L_O_B_O
 {
     /// <summary>
@@ -150,7 +154,6 @@ namespace T_L_O_B_O
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            
             // TODO: Add your drawing code here
             spriteBatch.Begin();
             tiles.Draw(spriteBatch);
