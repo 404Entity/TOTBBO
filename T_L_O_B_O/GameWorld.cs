@@ -9,6 +9,7 @@ namespace T_L_O_B_O
     /// </summary>
     public class GameWorld : Game
     {
+        Tiles tiles = new Tiles();
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         static private List<GameObject> gameObjectList;
@@ -27,7 +28,8 @@ namespace T_L_O_B_O
         }
         public float deltaTime;
         private EnemyPool enemypool;
-
+        Map map;
+        
         static private GameWorld instance;
         static public GameWorld Instance
         {
@@ -63,6 +65,8 @@ namespace T_L_O_B_O
             enemypool = new EnemyPool();
             Director director = new Director(new PlayerBuilder());
             gameObjectList.Add(director.Construct(Vector2.Zero));
+            map = new Map();
+            Tiles.content = Content;
             base.Initialize();
         }
 
@@ -74,11 +78,11 @@ namespace T_L_O_B_O
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
             foreach (GameObject item in gameObjectList)
             {
                 item.LoadContent(Content);
             }
+            tiles.LoadContent(Content);
 
             // TODO: use this.Content to load your game content here
         }
@@ -146,9 +150,10 @@ namespace T_L_O_B_O
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            
             // TODO: Add your drawing code here
             spriteBatch.Begin();
+            tiles.Draw(spriteBatch);
             foreach (GameObject item in gameObjectList)
             {
                 item.Draw(spriteBatch);

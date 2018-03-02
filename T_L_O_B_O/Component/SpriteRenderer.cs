@@ -11,6 +11,7 @@ namespace T_L_O_B_O
 {
     class SpriteRenderer: Component, ILoadable, IDrawable
     {
+        float scale;
         private Rectangle rectangle;
         private Texture2D sprite;
         private Vector2 offset;
@@ -32,10 +33,11 @@ namespace T_L_O_B_O
             get { return rectangle; }
             set { rectangle = value; }
         }
-        public SpriteRenderer(GameObject gameobject, string spriteName, float layerDepth) : base(gameobject)
+        public SpriteRenderer(GameObject gameobject, string spriteName, float layerDepth, float scale) : base(gameobject)
         {
             this.layerDepth = layerDepth;
             this.spriteName = spriteName;
+            this.scale = scale;
         }
         public void LoadContent(ContentManager content)
         {

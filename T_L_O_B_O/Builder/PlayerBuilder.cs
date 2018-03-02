@@ -14,7 +14,7 @@ namespace T_L_O_B_O
         {
             GameObject Player = new GameObject();            
             Player.AddComponent(new Transform(Player, position));
-            Player.AddComponent(new SpriteRenderer(Player, "HeroSheet", 1));
+            Player.AddComponent(new SpriteRenderer(Player, "HeroSheet", 1, 1));
             Player.AddComponent(new Animator(Player));
             Player.AddComponent(new Player(Player));
             Player.AddComponent(new Collider(Player,true));
