@@ -14,7 +14,7 @@ namespace T_L_O_B_O
         {
             GameObject slime = new GameObject();
             slime.AddComponent(new Transform(slime, position));
-            slime.AddComponent(new SpriteRenderer(slime, "SlimeSheet", 1));
+            slime.AddComponent(new SpriteRenderer(slime, "SlimeSheet", 1, 1));
             slime.AddComponent(new Animator(slime));
             slime.AddComponent(new Enemy(slime));
             slime.LoadContent(GameWorld.Instance.Content);
