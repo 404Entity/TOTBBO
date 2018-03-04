@@ -10,21 +10,24 @@ using System.Threading;
 
 namespace T_L_O_B_O
 {
-    class Tiles: IDrawable,ILoadable
+    class Tiles : IDrawable, ILoadable
     {
 
-        //protected Texture2D texture;
+        protected Texture2D texture;
         private List<Texture2D> picList = new List<Texture2D>();
-        public static ContentManager content;
+        //public static ContentManager content;
         protected Rectangle rectangle;
-        Map map = new Map();
-        int i;
-        
+        Map map;
 
-        public Tiles(int i, Rectangle newRectangle)
+        int i;
+
+
+        public Tiles(int i, Rectangle newRectangle, Map map)
         {
-            picList.Add(content.Load<Texture2D>("Map" + i)); 
+            this.i = i;
             this.Rectangle = newRectangle;
+            this.map = map;
+            //picList.Add(content.Load<Texture2D>("Map" + i.ToString()));
         }
 
         public Tiles()
@@ -38,17 +41,25 @@ namespace T_L_O_B_O
 
         public void LoadContent(ContentManager content)
         {
-            map.LoadContent(content);
+            //map.LoadContent(content);
+
+
+            texture = content.Load<Texture2D>("Map" + i.ToString());
+            // picList.Add(content.Load<Texture2D>("Map" + i.ToString()));
+
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            /*
             foreach (Texture2D tex in picList)
             {
                 spriteBatch.Draw(tex, rectangle, Color.White);
             }
-            
-            map.Draw(spriteBatch);
-        } 
+            */
+            spriteBatch.Draw(texture, rectangle, Color.White);
+            //map.Draw(spriteBatch);
+        }
     }
 }

@@ -8,14 +8,15 @@ namespace T_L_O_B_O
 {
     class Camera
     {
-        public Matrix Transform { get; private set; }
+        private Matrix transform;
+        public Matrix Transform { get { return transform; } private set { transform = value;} }
 
-        public void Follow(GameObject target, SpriteRenderer targetrender)
+        public void Follow(GameObject target, Collider targetColisionbox)
         {
-             var offset = Matrix.CreateTranslation(GameWorld.ScreenWidth / 2, GameWorld.ScreenHeight / 2, 0);
+            var offset = Matrix.CreateTranslation(GameWorld.ScreenWidth / 2, GameWorld.ScreenHeight / 2, 0);
             var position = Matrix.CreateTranslation(
-                -target.Transform.Position.X - (targetrender.Rectangle.Width / 2),
-                -target.Transform.Position.Y - (targetrender.Rectangle.Height / 2),
+                -target.Transform.Position.X - (targetColisionbox.CollisionBox.Width / 2),
+                -target.Transform.Position.Y - (targetColisionbox.CollisionBox.Height / 2),
                 0);
 
             Transform = position * offset;
