@@ -31,8 +31,9 @@ namespace T_L_O_B_O
         
         
         //Methods
-        public void Generate(int[,] map, int height, int width)
+        public void Generate(int[,] map, int height, int width,ContentManager content)
         {
+            Director director = new Director(new EnemyBuilder());
             int size = height*width;
             for (int y = 0; y < map.GetLength(0); y++)
             {
@@ -42,17 +43,26 @@ namespace T_L_O_B_O
 
                     if (number > 0)
                     {
-                        tileList.Add(new Tiles(number, new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
-
+                        if (number == 1)
+                        {
+                            GameWorld.Instance.AddList.Add(director.Construct(new Vector2(x * tileSize, y * tileSize)));
+                        }
+                        tileList.Add(new Tiles(number, new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize),this));
+                        
                         width = (x + 1) * size;
                         height = (y + 1) * size;
                     }
                 }
             }
+            foreach (Tiles tile in tileList)
+            {
+                tile.LoadContent(content);
+            }
         }
 
         public void LoadContent(ContentManager content)
         {
+            TileList = new List<Tiles>();
             Generate(new int[,]
             {
                 {1,0,1,2,1,0,1,2,1,0},
@@ -61,7 +71,7 @@ namespace T_L_O_B_O
                 {2,1,0,1,2,1,0,1,2,1},
                 {1,2,1,0,1,2,1,0,1,2},
 
-            }, 5,10);
+            }, 5,10,content);
         }
         
         public void Draw(SpriteBatch spriteBatch)

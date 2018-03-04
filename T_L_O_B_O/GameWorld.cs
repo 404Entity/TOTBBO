@@ -13,27 +13,39 @@ namespace T_L_O_B_O
     /// </summary>
     public class GameWorld : Game
     {
-        Tiles tiles = new Tiles();
+     
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        Tiles tiles = new Tiles();
+        // the Primary list form where all objects are store
         static private List<GameObject> gameObjectList;
+        // allows us to remove objects form the gameobject
         List<GameObject> removeList;
         internal List<GameObject> RemoveList
         {
             get { return removeList; }
             set { removeList = value; }
         }
+        // allows us to add objects to the gameobjectlist
         private List<GameObject> addList;
         internal List<GameObject> AddList { get { return addList; } set { addList = value; } }
+
+
         private List<Collider> colliders;
         internal List<Collider> Colliders
         {
             get { return colliders; }
         }
         public float deltaTime;
+
         private EnemyPool enemypool;
         Map map;
-        
+
+        public static float ScreenWidth;
+        public static float ScreenHeight;
+        private Camera camera;
+        private GameObject player;
         static private GameWorld instance;
         static public GameWorld Instance
         {
@@ -62,6 +74,8 @@ namespace T_L_O_B_O
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            ScreenHeight = graphics.PreferredBackBufferHeight;
+            ScreenWidth = graphics.PreferredBackBufferWidth;
             gameObjectList = new List<GameObject>();
             removeList = new List<GameObject>();
             addList = new List<GameObject>();
@@ -69,8 +83,9 @@ namespace T_L_O_B_O
             enemypool = new EnemyPool();
             Director director = new Director(new PlayerBuilder());
             gameObjectList.Add(director.Construct(Vector2.Zero));
+            player = director.Construct(Vector2.Zero);
             map = new Map();
-            Tiles.content = Content;
+            
             base.Initialize();
         }
 
@@ -86,8 +101,9 @@ namespace T_L_O_B_O
             {
                 item.LoadContent(Content);
             }
-            tiles.LoadContent(Content);
-
+            map.LoadContent(Content);
+            //Tiles.content = Content;
+            camera = new Camera();
             // TODO: use this.Content to load your game content here
         }
 
@@ -141,9 +157,10 @@ namespace T_L_O_B_O
             {
                 gameObjectList.Remove(item);
             }
+       
             removeList.Clear();
             // TODO: Add your update logic here
-
+            camera.Follow(player, (Collider)player.GetComponent("Collider"));
             base.Update(gameTime);
         }
 
@@ -155,8 +172,8 @@ namespace T_L_O_B_O
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             // TODO: Add your drawing code here
-            spriteBatch.Begin();
-            tiles.Draw(spriteBatch);
+            spriteBatch.Begin(transformMatrix: camera.Transform);
+            map.Draw(spriteBatch);
             foreach (GameObject item in gameObjectList)
             {
                 item.Draw(spriteBatch);
