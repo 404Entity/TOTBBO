@@ -82,8 +82,9 @@ namespace T_L_O_B_O
             colliders = new List<Collider>();
             enemypool = new EnemyPool();
             Director director = new Director(new PlayerBuilder());
-            gameObjectList.Add(director.Construct(Vector2.Zero));
-            player = director.Construct(Vector2.Zero);
+            player = director.Construct(new Vector2(200,200));
+            gameObjectList.Add(player);
+        
             map = new Map();
             
             base.Initialize();
@@ -102,7 +103,7 @@ namespace T_L_O_B_O
                 item.LoadContent(Content);
             }
             map.LoadContent(Content);
-            //Tiles.content = Content;
+            // instanciate the camera
             camera = new Camera();
             // TODO: use this.Content to load your game content here
         }
