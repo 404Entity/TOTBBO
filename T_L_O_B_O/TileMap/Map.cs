@@ -47,6 +47,22 @@ namespace T_L_O_B_O
                         {
                             GameWorld.Instance.AddList.Add(director.Construct(new Vector2(x * tileSize, y * tileSize)));
                         }
+                        else if (number == 2)
+                        {
+                            GameWorld.Instance.AddList.Add(director.Construct(new Vector2(x * tileSize, y * tileSize)));
+                        }
+                        else if (number == 3)
+                        {
+                            GameWorld.Instance.AddList.Add(director.Construct(new Vector2(x * tileSize, y * tileSize)));
+                        }
+                        else if (number == 4)
+                        {
+                            GameWorld.Instance.AddList.Add(director.Construct(new Vector2(x * tileSize, y * tileSize)));
+                        }
+                        else if (number == 5)
+                        {
+                            GameWorld.Instance.AddList.Add(director.Construct(new Vector2(x * tileSize, y * tileSize)));
+                        }
                         tileList.Add(new Tiles(number, new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize),this));
                         
                         width = (x + 1) * size;
