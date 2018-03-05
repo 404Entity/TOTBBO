@@ -13,7 +13,7 @@ namespace T_L_O_B_O
         public void BuildGameObject(Vector2 position)
         {
             GameObject Player = new GameObject();            
-            Player.AddComponent(new Transform(Player, position,1));
+            Player.AddComponent(new Transform(Player, position,10));
             Player.AddComponent(new SpriteRenderer(Player, "HeroSheet", 1, 1));
             Player.AddComponent(new Animator(Player));
             Player.AddComponent(new Player(Player));
