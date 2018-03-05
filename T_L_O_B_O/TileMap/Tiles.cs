@@ -10,7 +10,7 @@ using System.Threading;
 
 namespace T_L_O_B_O
 {
-    class Tiles : IDrawable, ILoadable
+    class Tiles: IDrawable, ILoadable
     {
 
         protected Texture2D texture;
@@ -28,11 +28,11 @@ namespace T_L_O_B_O
             this.map = map;
         }
 
-        public Tiles()
+        public Tiles(GameObject gameObject)
         {
         }
 
-        protected Rectangle Rectangle { get => rectangle; set => rectangle = value; }
+        public Rectangle Rectangle { get => rectangle; set => rectangle = value; }
 
 
 
