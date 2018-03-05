@@ -74,6 +74,9 @@ namespace T_L_O_B_O
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            graphics.IsFullScreen = true;
+            Window.AllowUserResizing = true;
+
             ScreenHeight = graphics.PreferredBackBufferHeight;
             ScreenWidth = graphics.PreferredBackBufferWidth;
             gameObjectList = new List<GameObject>();
@@ -161,6 +164,8 @@ namespace T_L_O_B_O
        
             removeList.Clear();
             // TODO: Add your update logic here
+            ScreenHeight = graphics.PreferredBackBufferHeight;
+            ScreenWidth = graphics.PreferredBackBufferWidth;
             camera.Follow(player, (Collider)player.GetComponent("Collider"));
             base.Update(gameTime);
         }
@@ -179,6 +184,9 @@ namespace T_L_O_B_O
             {
                 item.Draw(spriteBatch);
             }
+            spriteBatch.End();
+            // UI Sprites not affektede
+            spriteBatch.Begin();
             spriteBatch.End();
             base.Draw(gameTime);
         }

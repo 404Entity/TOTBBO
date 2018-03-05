@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 namespace T_L_O_B_O
 {
     enum DIRECTION {Back,Right,Front,Left};
-    class Player : Component, IUpdateable, ILoadable, IAnimateable
+    class Player : Component, IUpdateable, ILoadable, IAnimateable, ICollisionStay
     {
         #region Fields
         private float speed;
@@ -106,6 +106,14 @@ namespace T_L_O_B_O
             {
                 //promt i finished an attack
 
+            }
+        }
+
+        public void OnCollisionStay(Collider other)
+        {
+            if (strategy is Attack && (Enemy)other.GameObject.GetComponent("Enemy") != null)
+            {
+                GameWorld.Instance.RemoveList.Add(other.GameObject);
             }
         }
         #endregion

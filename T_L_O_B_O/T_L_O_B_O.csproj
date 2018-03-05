@@ -69,9 +69,6 @@
     <Compile Include="Strategy\Detect.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="GameWorld.cs" />
-    <Compile Include="Interfaces\ICollideExit.cs" />
-    <Compile Include="Interfaces\ICollideEnter.cs" />
-    <Compile Include="Interfaces\ICollideStay.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
     <Compile Include="Interfaces\IAnimateable.cs" />
     <Compile Include="Interfaces\ILoadable.cs" />
