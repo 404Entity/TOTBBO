@@ -13,7 +13,7 @@ namespace T_L_O_B_O
         public void BuildGameObject(Vector2 position)
         {
             GameObject worldBuilder = new GameObject();
-            worldBuilder.AddComponent(new Transform(worldBuilder, position));
+            worldBuilder.AddComponent(new Transform(worldBuilder, position,0));
             worldBuilder.AddComponent(new SpriteRenderer(worldBuilder, "Map1", 1, 0.5f));
             //worldBuilder.AddComponent(new Tiles(worldBuilder));
             worldBuilder.LoadContent(GameWorld.Instance.Content);
