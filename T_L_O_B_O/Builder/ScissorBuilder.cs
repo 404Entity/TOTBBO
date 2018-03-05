@@ -20,7 +20,7 @@ namespace T_L_O_B_O
             Scissor.AddComponent(new SpriteRenderer(Scissor, "Missing", 1, 0.5f));
             Scissor.AddComponent(new Animator(Scissor));
             //Scissor.AddComponent(new Scissor);
-            Scissor.AddComponent(new Collider(Scissor, false));
+            Scissor.AddComponent(new Collider(Scissor, false,1));
             buildObject = Scissor;
         }
 

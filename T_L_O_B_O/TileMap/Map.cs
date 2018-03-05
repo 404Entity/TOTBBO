@@ -13,7 +13,7 @@ namespace T_L_O_B_O
     {
         //Fields
         List<Tiles> tileList = new List<Tiles>();
-        int tileSize = 100;
+        int tileSize = 50;
         int width, height;
 
         //Constructor
@@ -47,6 +47,22 @@ namespace T_L_O_B_O
                         {
                             GameWorld.Instance.AddList.Add(director.Construct(new Vector2(x * tileSize, y * tileSize)));
                         }
+                        else if (number == 2)
+                        {
+                            GameWorld.Instance.AddList.Add(director.Construct(new Vector2(x * tileSize, y * tileSize)));
+                        }
+                        else if (number == 3)
+                        {
+                            GameWorld.Instance.AddList.Add(director.Construct(new Vector2(x * tileSize, y * tileSize)));
+                        }
+                        else if (number == 4)
+                        {
+                            GameWorld.Instance.AddList.Add(director.Construct(new Vector2(x * tileSize, y * tileSize)));
+                        }
+                        else if (number == 5)
+                        {
+                            GameWorld.Instance.AddList.Add(director.Construct(new Vector2(x * tileSize, y * tileSize)));
+                        }
                         tileList.Add(new Tiles(number, new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize),this));
                         
                         width = (x + 1) * size;
@@ -65,13 +81,18 @@ namespace T_L_O_B_O
             TileList = new List<Tiles>();
             Generate(new int[,]
             {
-                {1,1,1,1,1,1,1,1,1,1},
-                {0,0,0,0,0,0,0,0,0,2},
-                {0,0,0,0,0,0,0,0,0,2},
-                {2,2,2,2,2,2,0,0,2,2},
-                {2,2,2,2,2,2,0,0,2,2},
+                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,1,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0},
 
-            }, 5,10,content);
+            }, 10,10,content);
         }
         
         public void Draw(SpriteBatch spriteBatch)
