@@ -13,7 +13,7 @@ namespace T_L_O_B_O
     {
         //Fields
         List<Tiles> tileList = new List<Tiles>();
-        int tileSize = 100;
+        int tileSize = 50;
         int width, height;
 
         //Constructor
@@ -81,13 +81,18 @@ namespace T_L_O_B_O
             TileList = new List<Tiles>();
             Generate(new int[,]
             {
-                {1,0,1,2,1,0,1,2,1,0},
-                {0,1,2,1,0,1,2,1,0,1},
-                {1,0,1,2,1,0,1,2,1,0},
-                {2,1,0,1,2,1,0,1,2,1},
-                {1,2,1,0,1,2,1,0,1,2},
+                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,1,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0},
 
-            }, 5,10,content);
+            }, 10,10,content);
         }
         
         public void Draw(SpriteBatch spriteBatch)
