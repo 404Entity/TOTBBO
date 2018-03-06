@@ -68,10 +68,10 @@ namespace T_L_O_B_O
         #region Draw and LoadContent
         public void Draw(SpriteBatch spriteBatch)
         {
-            Rectangle topLine = new Rectangle(CollisionBox.X, CollisionBox.Y, CollisionBox.Width / scale, 1);
-            Rectangle bottomLine = new Rectangle(CollisionBox.X, CollisionBox.Y + CollisionBox.Height / scale, CollisionBox.Width / scale, 1);
-            Rectangle rightLine = new Rectangle(CollisionBox.X + CollisionBox.Width / scale, CollisionBox.Y, 1, CollisionBox.Height / scale);
-            Rectangle leftLine = new Rectangle(CollisionBox.X, CollisionBox.Y, 1, CollisionBox.Height / scale);
+            Rectangle topLine = new Rectangle(CollisionBox.X, CollisionBox.Y, CollisionBox.Width, 1);
+            Rectangle bottomLine = new Rectangle(CollisionBox.X, CollisionBox.Y + CollisionBox.Height / scale, CollisionBox.Width, 1);
+            Rectangle rightLine = new Rectangle(CollisionBox.X + CollisionBox.Width / scale, CollisionBox.Y, 1, CollisionBox.Height);
+            Rectangle leftLine = new Rectangle(CollisionBox.X, CollisionBox.Y, 1, CollisionBox.Height);
 
 
             if (isCollideWith)

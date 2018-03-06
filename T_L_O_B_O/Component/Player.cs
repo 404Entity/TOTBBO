@@ -73,10 +73,14 @@ namespace T_L_O_B_O
                 {
                     strategy = new Attack(animator);
                 }
-                else if (keyState.IsKeyDown(Keys.Space))
+                else if (isgrounded == true)
                 {
-                    strategy = new Jump(animator);
+                    if (keyState.IsKeyDown(Keys.Space))
+                    {
+                        strategy = new Jump(animator);
+                    }
                 }
+                
                 strategy.Execute(direction);
             }
             Fall(isgrounded);
@@ -166,12 +170,6 @@ namespace T_L_O_B_O
 
                     isgrounded = false;
                 }
-            }
-            if (isgrounded == false)
-            {
-                float i = 1;
-
-
             }
         }
         
