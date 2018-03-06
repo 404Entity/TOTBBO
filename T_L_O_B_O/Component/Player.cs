@@ -12,6 +12,7 @@ namespace T_L_O_B_O
     enum DIRECTION { Back, Right, Front, Left };
     class Player : Component, IUpdateable, ILoadable, IAnimateable, ICollisionStay, IGravity, ICollisionExit, ICollisionEnter
     {
+        
         #region Fields
         private float speed;
         private Animator animator;
@@ -68,13 +69,18 @@ namespace T_L_O_B_O
                 {
                     strategy = new Idle(animator);
                 }
-                if (keyState.IsKeyDown(Keys.Space))
+                if (keyState.IsKeyDown(Keys.E))
                 {
                     strategy = new Attack(animator);
+                }
+                else if (keyState.IsKeyDown(Keys.Space))
+                {
+                    strategy = new Jump(animator);
                 }
                 strategy.Execute(direction);
             }
             Fall(isgrounded);
+            Jump();
         }
         public void CreateAnimation()
         {
@@ -96,6 +102,10 @@ namespace T_L_O_B_O
             animator.CreateAnimation("DieBack", new Animation(3, 920, 3, 150, 150, 5, Vector2.Zero));
             animator.CreateAnimation("DieLeft", new Animation(3, 1070, 0, 150, 150, 5, Vector2.Zero));
             animator.CreateAnimation("DieRight", new Animation(3, 1070, 3, 150, 150, 5, Vector2.Zero));
+            animator.CreateAnimation("JumpFront", new Animation(3, 1070, 3, 150, 150, 5, Vector2.Zero));
+            animator.CreateAnimation("JumpBack", new Animation(3, 1070, 3, 150, 150, 5, Vector2.Zero));
+            animator.CreateAnimation("JumpLeft", new Animation(3, 1070, 3, 150, 150, 5, Vector2.Zero));
+            animator.CreateAnimation("JumpRight", new Animation(3, 1070, 3, 150, 150, 5, Vector2.Zero));
             animator.PlayAnimation("IdleFront");
         }
 
@@ -143,10 +153,30 @@ namespace T_L_O_B_O
         {
             if (!isgrounded)
             {
-                GameObject.Transform.Translate(new Vector2(0, 9.82f));
+                GameObject.Transform.Translate(new Vector2(0, 3));
             }
         }
+        
+        public void Jump()
+        {
+            KeyboardState keyState = Keyboard.GetState();
+            if (keyState.IsKeyDown(Keys.Space))
+            {
+                if (isgrounded == true)
+                {
+                    GameObject.Transform.Translate(new Vector2(0, -200));
 
+                    isgrounded = false;
+                }
+            }
+            if (isgrounded == false)
+            {
+                float i = 1;
+
+
+            }
+        }
+        
         public void OnCollisionExit(Collider other)
         {
             isgrounded = false;
