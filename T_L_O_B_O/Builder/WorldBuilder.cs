@@ -17,7 +17,7 @@ namespace T_L_O_B_O
             worldBuilder.AddComponent(new SpriteRenderer(worldBuilder, "Map1", 1, 0.5f));
             //worldBuilder.AddComponent(new Tiles(worldBuilder));
             worldBuilder.LoadContent(GameWorld.Instance.Content);
-            worldBuilder.AddComponent(new Collider(worldBuilder, true, 1));
+            worldBuilder.AddComponent(new Collider(worldBuilder, false, 1));
             buildobject = worldBuilder;
         }
 

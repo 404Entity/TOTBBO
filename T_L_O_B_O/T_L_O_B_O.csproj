@@ -51,6 +51,7 @@
     <Compile Include="Component\Enemy.cs" />
     <Compile Include="Builder\EnemyBuilder.cs" />
     <Compile Include="EnemyPool.cs" />
+    <Compile Include="IGravity.cs" />
     <Compile Include="Interfaces\IBuilder.cs" />
     <Compile Include="Interfaces\ICollisionEnter.cs" />
     <Compile Include="Interfaces\ICollisionExit.cs" />

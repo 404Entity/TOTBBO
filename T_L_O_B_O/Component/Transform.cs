@@ -31,7 +31,7 @@ namespace T_L_O_B_O
 
         public void Update()
         {
-            position.Y += gravity;
+            //position.Y += gravity;
         }
     }
 }

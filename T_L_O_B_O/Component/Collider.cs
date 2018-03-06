@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace T_L_O_B_O
 {
-    class Collider : Component, IDrawable, ILoadable, IUpdateable, ICollisionStay, ICollisionEnter, ICollisionExit
+    class Collider : Component, IDrawable, ILoadable, IUpdateable
     {
         #region Fields and properties
         private SpriteRenderer spriteRender;
@@ -102,42 +102,39 @@ namespace T_L_O_B_O
 
                     if (!CollisionBox.Intersects(collider.CollisionBox))
                     {
-                        OnCollisionExit(collider);
+                        gameObject.OnCollisionExit(collider);
                         removelist.Add(collider);
+                    }
+                    else
+                    {
+                        gameObject.OnCollisionStay(collider);
                     }
                 }
                 foreach (Collider item in removelist)
                 {
                     ohterColliders.Remove(item);
                 }
-                foreach (Collider collider in GameWorld.Instance.Colliders)
+                //Genereate a optimized Temp list.  
+                List<Collider> OptimList = new List<Collider>();
+                OptimList.AddRange(GameWorld.Instance.Colliders);
+                foreach (Collider collider in ohterColliders)
+                {
+                    OptimList.Remove(collider);
+                }
+                foreach (Collider collider in OptimList)
                 {
                     if (collider != this)
                     {
                         if (CollisionBox.Intersects(collider.CollisionBox))
                         {
-                            OnCollisionEnter(collider);
+                            gameObject.OnCollisionEnter(collider);
+                            ohterColliders.Add(collider);
                         }
                     }
                 }
             }
         }
 
-        public void OnCollisionStay(Collider other)
-        {
-            other.isCollideWith = true;
-        }
-
-        public void OnCollisionExit(Collider other)
-        {
-            other.isCollideWith = false;
-        }
-
-        public void OnCollisionEnter(Collider other)
-        {
-            ohterColliders.Add(other);
-            gameObject.OnCollisionStay(other);
-        }
 
         private void CachePixels()
         {
