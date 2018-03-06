@@ -2,6 +2,10 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Threading;
+
+
 namespace T_L_O_B_O
 {
     /// <summary>
@@ -9,25 +13,38 @@ namespace T_L_O_B_O
     /// </summary>
     public class GameWorld : Game
     {
+     
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        
+        // the Primary list form where all objects are store
         static private List<GameObject> gameObjectList;
+        // allows us to remove objects form the gameobject
         List<GameObject> removeList;
         internal List<GameObject> RemoveList
         {
             get { return removeList; }
             set { removeList = value; }
         }
+        // allows us to add objects to the gameobjectlist
         private List<GameObject> addList;
         internal List<GameObject> AddList { get { return addList; } set { addList = value; } }
+
+
         private List<Collider> colliders;
         internal List<Collider> Colliders
         {
             get { return colliders; }
         }
         public float deltaTime;
-        private EnemyPool enemypool;
 
+        private EnemyPool enemypool;
+        Map map;
+
+        public static float ScreenWidth;
+        public static float ScreenHeight;
+        private Camera camera;
+        private GameObject player;
         static private GameWorld instance;
         static public GameWorld Instance
         {
@@ -56,13 +73,23 @@ namespace T_L_O_B_O
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            graphics.IsFullScreen = true;
+            Window.AllowUserResizing = true;
+
+            ScreenHeight = graphics.PreferredBackBufferHeight;
+            ScreenWidth = graphics.PreferredBackBufferWidth;
             gameObjectList = new List<GameObject>();
             removeList = new List<GameObject>();
             addList = new List<GameObject>();
             colliders = new List<Collider>();
             enemypool = new EnemyPool();
             Director director = new Director(new PlayerBuilder());
-            gameObjectList.Add(director.Construct(Vector2.Zero));
+            player = director.Construct(new Vector2(200,200));
+            gameObjectList.Add(player);
+            
+            
+            map = new Map();
+            
             base.Initialize();
         }
 
@@ -74,12 +101,13 @@ namespace T_L_O_B_O
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
             foreach (GameObject item in gameObjectList)
             {
                 item.LoadContent(Content);
             }
-
+            map.LoadContent(Content);
+            // instanciate the camera
+            camera = new Camera();
             // TODO: use this.Content to load your game content here
         }
 
@@ -133,9 +161,12 @@ namespace T_L_O_B_O
             {
                 gameObjectList.Remove(item);
             }
+       
             removeList.Clear();
             // TODO: Add your update logic here
-
+            ScreenHeight = graphics.PreferredBackBufferHeight;
+            ScreenWidth = graphics.PreferredBackBufferWidth;
+            camera.Follow(player, (Collider)player.GetComponent("Collider"));
             base.Update(gameTime);
         }
 
@@ -146,13 +177,16 @@ namespace T_L_O_B_O
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
             // TODO: Add your drawing code here
-            spriteBatch.Begin();
+            spriteBatch.Begin(transformMatrix: camera.Transform);
+            map.Draw(spriteBatch);
             foreach (GameObject item in gameObjectList)
             {
                 item.Draw(spriteBatch);
             }
+            spriteBatch.End();
+            // UI Sprites not affektede
+            spriteBatch.Begin();
             spriteBatch.End();
             base.Draw(gameTime);
         }
