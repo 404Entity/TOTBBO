@@ -46,7 +46,7 @@ namespace T_L_O_B_O
                     {
                         if (number == 1)
                         {
-                            GameWorld.Instance.gam.Add(director.Construct(new Vector2(x * tileSize, y * tileSize)));
+                            GameWorld.Instance.AddList.Add(director.Construct(new Vector2(x * tileSize, y * tileSize)));
                         }
                         else if (number == 2)
                         {
