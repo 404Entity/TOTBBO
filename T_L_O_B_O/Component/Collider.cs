@@ -28,17 +28,30 @@ namespace T_L_O_B_O
         {
             get
             {
-                return new Rectangle
-                (
+               
+                if (spriteRender.Rectangle.Width < 2 && spriteRender.Rectangle.Height < 2)
+                {
+                    return new Rectangle
+                    (
                     (int)(GameObject.Transform.Position.X + spriteRender.Offset.X),
                     (int)(gameObject.Transform.Position.Y + spriteRender.Offset.Y),
-                    spriteRender.Rectangle.Width,
-                    spriteRender.Rectangle.Height
-               );
+                    spriteRender.Sprite.Width,
+                    spriteRender.Sprite.Height);
+                }
+                else
+                {
+                    return new Rectangle
+               (
+                   (int)(GameObject.Transform.Position.X + spriteRender.Offset.X),
+                   (int)(gameObject.Transform.Position.Y + spriteRender.Offset.Y),
+                   spriteRender.Rectangle.Width,
+                   spriteRender.Rectangle.Height
+              );
+                }
             }
         }
         private int scale;
-        
+
         #endregion
         #region Constructor
         public Collider(GameObject gameObject, bool CheckCollision, int scale) : base(gameObject)
@@ -56,7 +69,7 @@ namespace T_L_O_B_O
         public void Draw(SpriteBatch spriteBatch)
         {
             Rectangle topLine = new Rectangle(CollisionBox.X, CollisionBox.Y, CollisionBox.Width / scale, 1);
-            Rectangle bottomLine = new Rectangle(CollisionBox.X, CollisionBox.Y + CollisionBox.Height/scale, CollisionBox.Width / scale, 1);
+            Rectangle bottomLine = new Rectangle(CollisionBox.X, CollisionBox.Y + CollisionBox.Height / scale, CollisionBox.Width / scale, 1);
             Rectangle rightLine = new Rectangle(CollisionBox.X + CollisionBox.Width / scale, CollisionBox.Y, 1, CollisionBox.Height / scale);
             Rectangle leftLine = new Rectangle(CollisionBox.X, CollisionBox.Y, 1, CollisionBox.Height / scale);
 
@@ -138,7 +151,7 @@ namespace T_L_O_B_O
 
         private void CachePixels()
         {
-            foreach (KeyValuePair<string,Animation> pair in animator.MyAnimations)
+            foreach (KeyValuePair<string, Animation> pair in animator.MyAnimations)
             {
                 Animation animation = pair.Value;
                 Color[][] colors = new Color[(int)animation.Fps][];
