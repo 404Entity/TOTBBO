@@ -40,13 +40,12 @@ namespace T_L_O_B_O
                 }
                 else
                 {
-                    return new Rectangle
-               (
+                   return new Rectangle
+                   (
                    (int)(GameObject.Transform.Position.X + spriteRender.Offset.X),
                    (int)(gameObject.Transform.Position.Y + spriteRender.Offset.Y),
                    spriteRender.Rectangle.Width,
-                   spriteRender.Rectangle.Height
-              );
+                   spriteRender.Rectangle.Height);
                 }
             }
         }

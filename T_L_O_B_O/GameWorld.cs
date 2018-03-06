@@ -180,6 +180,7 @@ namespace T_L_O_B_O
             GraphicsDevice.Clear(Color.CornflowerBlue);
             // TODO: Add your drawing code here
             spriteBatch.Begin(transformMatrix: camera.Transform);
+            spriteBatch.Draw(Content.Load<Texture2D>("BackGround"), new Vector2(0,-80), Color.White);
             map.Draw(spriteBatch);
             foreach (GameObject item in gameObjectList)
             {
