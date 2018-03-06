@@ -151,7 +151,7 @@ namespace T_L_O_B_O
         {
             if (!isgrounded)
             {
-                GameObject.Transform.Translate(new Vector2(0, 9.82f));
+                GameObject.Transform.Translate(new Vector2(0, 3));
             }
         }
         
@@ -162,25 +162,19 @@ namespace T_L_O_B_O
             {
                 if (isgrounded == true)
                 {
-                    GameObject.Transform.Translate(new Vector2(0, -250));
-                    //GameObject.Transform.Translate(new Vector2(0,((jumpspeed++ ))));
+                    GameObject.Transform.Translate(new Vector2(0, -200));
+
+                    isgrounded = false;
                 }
             }
-        }
-
-        public void TestJump()
-        {
-            KeyboardState keyState = Keyboard.GetState();
-            if (keyState.IsKeyDown(Keys.Space))
+            if (isgrounded == false)
             {
-                if (isgrounded == true)
-                {
-                    
-                    //GameObject.Transform.Translate(new Vector2(0,((jumpspeed++ ))));
-                }
+                float i = 1;
+
+
             }
         }
-
+        
         public void OnCollisionExit(Collider other)
         {
             isgrounded = false;
