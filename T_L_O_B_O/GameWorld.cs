@@ -16,9 +16,10 @@ namespace T_L_O_B_O
      
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        
+
         // the Primary list form where all objects are store
         static private List<GameObject> gameObjectList;
+
         // allows us to remove objects form the gameobject
         List<GameObject> removeList;
         internal List<GameObject> RemoveList

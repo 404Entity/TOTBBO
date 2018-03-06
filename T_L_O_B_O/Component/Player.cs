@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 namespace T_L_O_B_O
 {
     enum DIRECTION { Back, Right, Front, Left };
-    class Player : Component, IUpdateable, ILoadable, IAnimateable, ICollisionStay, IGravity, /*ICollisionExit*/ ICollisionEnter
+    class Player : Component, IUpdateable, ILoadable, IAnimateable, ICollisionStay, IGravity, ICollisionExit, ICollisionEnter
     {
         #region Fields
         private float speed;
@@ -123,12 +123,18 @@ namespace T_L_O_B_O
                 isgrounded = true;
                 gameObject.Transform.Translate(new Vector2(0, other.CollisionBox.Top - collider.CollisionBox.Bottom + 1));
             }
-            
             else if (collider.CollisionBox.Right >= other.CollisionBox.Left && collider.CollisionBox.Right - 10 <= other.CollisionBox.Left)
             {
-                gameObject.Transform.Translate(new Vector2(other.CollisionBox.Left - collider.CollisionBox.Right - 1));
+                gameObject.Transform.Translate(new Vector2(other.CollisionBox.Left - collider.CollisionBox.Right + 1, 0));
             }
-            
+            else if (collider.CollisionBox.Left <= other.CollisionBox.Right && collider.CollisionBox.Left + 10 >= other.CollisionBox.Right)
+            {
+                gameObject.Transform.Translate(new Vector2(collider.CollisionBox.Left - other.CollisionBox.Right + 1, 0));
+            }
+            else if (collider.CollisionBox.Top <= other.CollisionBox.Bottom && collider.CollisionBox.Top + 10 >= other.CollisionBox.Bottom)
+            {
+                gameObject.Transform.Translate(new Vector2(other.CollisionBox.Top - collider.CollisionBox.Top, 0));
+            }
         }
 
         public void Fall(bool isgrounded)
@@ -138,7 +144,7 @@ namespace T_L_O_B_O
                 GameObject.Transform.Translate(new Vector2(0, 9.82f));
             }
         }
-        
+
         public void OnCollisionExit(Collider other)
         {
             isgrounded = false;
