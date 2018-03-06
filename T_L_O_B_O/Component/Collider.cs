@@ -20,6 +20,7 @@ namespace T_L_O_B_O
         private Animator animator;
         private Dictionary<string, Color[][]> pixels;
         private bool doCollisionChecks;
+        
         public bool DoCollisionChecks
         {
             set { doCollisionChecks = value; }
