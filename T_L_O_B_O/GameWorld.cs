@@ -16,7 +16,7 @@ namespace T_L_O_B_O
      
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
+        
         Tiles tiles = new Tiles();
         // the Primary list form where all objects are store
         static private List<GameObject> gameObjectList;
@@ -26,6 +26,7 @@ namespace T_L_O_B_O
         {
             get { return removeList; }
             set { removeList = value; }
+            
         }
         // allows us to add objects to the gameobjectlist
         private List<GameObject> addList;
