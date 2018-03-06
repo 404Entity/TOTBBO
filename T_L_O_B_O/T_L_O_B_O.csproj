@@ -51,10 +51,12 @@
     <Compile Include="Component\Enemy.cs" />
     <Compile Include="Builder\EnemyBuilder.cs" />
     <Compile Include="EnemyPool.cs" />
+    <Compile Include="IGravity.cs" />
     <Compile Include="Interfaces\IBuilder.cs" />
     <Compile Include="Interfaces\ICollisionEnter.cs" />
     <Compile Include="Interfaces\ICollisionExit.cs" />
     <Compile Include="Interfaces\ICollisionStay.cs" />
+    <Compile Include="Strategy\Jump.cs" />
     <Compile Include="TileMap\Map.cs" />
     <Compile Include="obj\x86\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\x86\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
@@ -69,9 +71,6 @@
     <Compile Include="Strategy\Detect.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="GameWorld.cs" />
-    <Compile Include="Interfaces\ICollideExit.cs" />
-    <Compile Include="Interfaces\ICollideEnter.cs" />
-    <Compile Include="Interfaces\ICollideStay.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
     <Compile Include="Interfaces\IAnimateable.cs" />
     <Compile Include="Interfaces\ILoadable.cs" />
@@ -82,6 +81,7 @@
     <Compile Include="Component\Transform.cs" />
     <Compile Include="Strategy\Walk.cs" />
     <Compile Include="TileMap\Tiles.cs" />
+    <Compile Include="Builder\WorldBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

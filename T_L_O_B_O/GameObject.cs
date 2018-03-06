@@ -106,7 +106,10 @@ namespace T_L_O_B_O
         {
             foreach(Component component in components)
             {
-                (component as ICollisionExit).OnCollisionExit(other);
+                if (component is ICollisionExit)
+                {
+                    (component as ICollisionExit).OnCollisionExit(other);
+                }
             }
         }
 
@@ -114,7 +117,10 @@ namespace T_L_O_B_O
         {
             foreach (Component component in components)
             {
-                (component as ICollisionEnter).OnCollisionEnter(other);
+                if (component is ICollisionEnter)
+                {
+                    (component as ICollisionEnter).OnCollisionEnter(other);
+                }
             }
         }
     }

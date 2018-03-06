@@ -9,8 +9,8 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
 namespace T_L_O_B_O
 {
-    enum DIRECTION {Back,Right,Front,Left};
-    class Player : Component, IUpdateable, ILoadable, IAnimateable
+    enum DIRECTION { Back, Right, Front, Left };
+    class Player : Component, IUpdateable, ILoadable, IAnimateable, ICollisionStay, IGravity, /*ICollisionExit*/ ICollisionEnter
     {
         #region Fields
         private float speed;
@@ -18,6 +18,7 @@ namespace T_L_O_B_O
         private IStrategy strategy;
         private DIRECTION direction;
         private bool canMove;
+        private bool isgrounded;
         #endregion
         #region Constructor
         public Player(GameObject gameobject) : base(gameobject)
@@ -26,6 +27,7 @@ namespace T_L_O_B_O
             direction = DIRECTION.Front;
             animator = (gameobject.GetComponent("Animator") as Animator);
             canMove = true;
+            isgrounded = false;
         }
         #endregion
         #region Methods
@@ -39,7 +41,7 @@ namespace T_L_O_B_O
             KeyboardState keyState = Keyboard.GetState();
             if (canMove)
             {
-                if (keyState.IsKeyDown(Keys.W) || keyState.IsKeyDown(Keys.D)||keyState.IsKeyDown(Keys.S)||keyState.IsKeyDown(Keys.A))
+                if (keyState.IsKeyDown(Keys.W) || keyState.IsKeyDown(Keys.D) || keyState.IsKeyDown(Keys.S) || keyState.IsKeyDown(Keys.A))
                 {
                     if (keyState.IsKeyDown(Keys.W))
                     {
@@ -59,7 +61,7 @@ namespace T_L_O_B_O
                     }
                     if (!(strategy is Walk))
                     {
-                        strategy = new Walk(animator,gameObject.Transform,speed);
+                        strategy = new Walk(animator, gameObject.Transform, speed);
                     }
                 }
                 else
@@ -72,8 +74,7 @@ namespace T_L_O_B_O
                 }
                 strategy.Execute(direction);
             }
-
-       
+            Fall(isgrounded);
         }
         public void CreateAnimation()
         {
@@ -107,6 +108,57 @@ namespace T_L_O_B_O
                 //promt i finished an attack
 
             }
+        }
+
+        public void OnCollisionStay(Collider other)
+        {
+            if (strategy is Attack && (Enemy)other.GameObject.GetComponent("Enemy") != null)
+            {
+                GameWorld.Instance.RemoveList.Add(other.GameObject);
+            }
+            Collider collider = (Collider)gameObject.GetComponent("Collider");
+
+            if (collider.CollisionBox.Bottom >= other.CollisionBox.Top && collider.CollisionBox.Bottom - 20 <= other.CollisionBox.Top)
+            {
+                isgrounded = true;
+                gameObject.Transform.Translate(new Vector2(0, other.CollisionBox.Top - collider.CollisionBox.Bottom + 1));
+            }
+            
+            else if (collider.CollisionBox.Right >= other.CollisionBox.Left && collider.CollisionBox.Right - 10 <= other.CollisionBox.Left)
+            {
+                gameObject.Transform.Translate(new Vector2(other.CollisionBox.Left - collider.CollisionBox.Right - 1));
+            }
+            
+        }
+
+        public void Fall(bool isgrounded)
+        {
+            if (!isgrounded)
+            {
+                GameObject.Transform.Translate(new Vector2(0, 9.82f));
+            }
+        }
+        
+        public void OnCollisionExit(Collider other)
+        {
+            isgrounded = false;
+        }
+
+        public void OnCollisionEnter(Collider other)
+        {
+            /*
+            Collider collider = (Collider)gameObject.GetComponent("Collider");
+
+            if (collider.CollisionBox.Bottom >= other.CollisionBox.Top && collider.CollisionBox.Bottom - 10 <= other.CollisionBox.Top)
+            {
+                isgrounded = true;
+                gameObject.Transform.Translate(new Vector2(0, other.CollisionBox.Top - collider.CollisionBox.Bottom + 1));
+            }
+            else if (collider.CollisionBox.Right >= other.CollisionBox.Left && collider.CollisionBox.Right - 10 <= other.CollisionBox.Left)
+            {
+                gameObject.Transform.Translate(new Vector2(other.CollisionBox.Left - collider.CollisionBox.Right - 1));
+            }
+            */
         }
         #endregion
     }

@@ -17,7 +17,6 @@ namespace T_L_O_B_O
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         
-        Tiles tiles = new Tiles();
         // the Primary list form where all objects are store
         static private List<GameObject> gameObjectList;
         // allows us to remove objects form the gameobject
@@ -26,7 +25,6 @@ namespace T_L_O_B_O
         {
             get { return removeList; }
             set { removeList = value; }
-            
         }
         // allows us to add objects to the gameobjectlist
         private List<GameObject> addList;
@@ -75,6 +73,9 @@ namespace T_L_O_B_O
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            graphics.IsFullScreen = true;
+            Window.AllowUserResizing = true;
+
             ScreenHeight = graphics.PreferredBackBufferHeight;
             ScreenWidth = graphics.PreferredBackBufferWidth;
             gameObjectList = new List<GameObject>();
@@ -85,7 +86,8 @@ namespace T_L_O_B_O
             Director director = new Director(new PlayerBuilder());
             player = director.Construct(new Vector2(200,200));
             gameObjectList.Add(player);
-        
+            
+            
             map = new Map();
             
             base.Initialize();
@@ -162,6 +164,8 @@ namespace T_L_O_B_O
        
             removeList.Clear();
             // TODO: Add your update logic here
+            ScreenHeight = graphics.PreferredBackBufferHeight;
+            ScreenWidth = graphics.PreferredBackBufferWidth;
             camera.Follow(player, (Collider)player.GetComponent("Collider"));
             base.Update(gameTime);
         }
@@ -180,6 +184,9 @@ namespace T_L_O_B_O
             {
                 item.Draw(spriteBatch);
             }
+            spriteBatch.End();
+            // UI Sprites not affektede
+            spriteBatch.Begin();
             spriteBatch.End();
             base.Draw(gameTime);
         }

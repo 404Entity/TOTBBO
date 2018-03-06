@@ -16,11 +16,11 @@ namespace T_L_O_B_O
         public void BuildGameOBject(Vector2 position)
         {
             GameObject Scissor = new GameObject();
-            Scissor.AddComponent(new Transform(Scissor, position));
+            Scissor.AddComponent(new Transform(Scissor, position,1));
             Scissor.AddComponent(new SpriteRenderer(Scissor, "Missing", 1, 0.5f));
             Scissor.AddComponent(new Animator(Scissor));
             //Scissor.AddComponent(new Scissor);
-            Scissor.AddComponent(new Collider(Scissor, false));
+            Scissor.AddComponent(new Collider(Scissor, false,1));
             buildObject = Scissor;
         }
 
