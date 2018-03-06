@@ -51,11 +51,12 @@
     <Compile Include="Component\Enemy.cs" />
     <Compile Include="Builder\EnemyBuilder.cs" />
     <Compile Include="EnemyPool.cs" />
-    <Compile Include="IGravity.cs" />
+    <Compile Include="Interfaces\IGravity.cs" />
     <Compile Include="Interfaces\IBuilder.cs" />
     <Compile Include="Interfaces\ICollisionEnter.cs" />
     <Compile Include="Interfaces\ICollisionExit.cs" />
     <Compile Include="Interfaces\ICollisionStay.cs" />
+    <Compile Include="Strategy\Jump.cs" />
     <Compile Include="TileMap\Map.cs" />
     <Compile Include="obj\x86\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\x86\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
@@ -93,6 +94,8 @@
     <Content Include="bin\Windows\x86\Debug\T_L_O_B_O.exe" />
     <Content Include="bin\Windows\x86\Debug\T_L_O_B_O.pdb" />
     <Content Include="Content\Hero.png" />
+    <Content Include="Content\Map1.jpg" />
+    <Content Include="Content\Map2.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
