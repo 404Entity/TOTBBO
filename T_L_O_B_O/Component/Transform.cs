@@ -9,22 +9,29 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace T_L_O_B_O
 {
-    class Transform : Component
+    class Transform : Component, IUpdateable
     {
         private Vector2 position;
+        int gravity;
         public Vector2 Position
         {
             get { return position; }
             set { position = value; }
         }
-        public Transform(GameObject gameobject, Vector2 position) :base(gameobject)
+        public Transform(GameObject gameobject, Vector2 position, int gravity) :base(gameobject)
         {
             this.position = position;
             gameobject.Transform = this;
+            this.gravity = gravity;
         }
         public void Translate(Vector2 translation)
         {
             position += translation;
+        }
+
+        public void Update()
+        {
+            position.Y += gravity;
         }
     }
 }

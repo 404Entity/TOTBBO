@@ -72,7 +72,7 @@ namespace T_L_O_B_O
                 }
                 strategy.Execute(direction);
             }
-
+            
        
         }
         public void CreateAnimation()

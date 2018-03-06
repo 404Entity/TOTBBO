@@ -80,6 +80,7 @@
     <Compile Include="Component\Transform.cs" />
     <Compile Include="Strategy\Walk.cs" />
     <Compile Include="TileMap\Tiles.cs" />
+    <Compile Include="Builder\WorldBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

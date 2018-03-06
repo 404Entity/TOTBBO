@@ -16,8 +16,7 @@ namespace T_L_O_B_O
      
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
-        Tiles tiles = new Tiles();
+        
         // the Primary list form where all objects are store
         static private List<GameObject> gameObjectList;
         // allows us to remove objects form the gameobject
@@ -87,7 +86,8 @@ namespace T_L_O_B_O
             Director director = new Director(new PlayerBuilder());
             player = director.Construct(new Vector2(200,200));
             gameObjectList.Add(player);
-        
+            
+            
             map = new Map();
             
             base.Initialize();
