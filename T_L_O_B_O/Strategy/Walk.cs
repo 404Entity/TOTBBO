@@ -23,12 +23,12 @@ namespace T_L_O_B_O
             Vector2 translation = Vector2.Zero;
             if (ref_direction == DIRECTION.Right)
             {
-                translation += new Vector2(2, 0);
+                translation += new Vector2(2f, 0);
                 animator.PlayAnimation("WalkRight");
             }
             if (ref_direction == DIRECTION.Left)
             {
-                translation += new Vector2(-2, 0);
+                translation += new Vector2(-2f, 0);
                 animator.PlayAnimation("WalkLeft");
             }
             if (ref_direction == DIRECTION.Back)

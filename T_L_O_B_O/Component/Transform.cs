@@ -29,12 +29,24 @@ namespace T_L_O_B_O
         public void Translate(Vector2 translation)
         {
             velocity = translation;
+        }
+        public void  Translate2(Vector2 translation)
+        {
+            velocity += translation;
+        }
+        public void ForceTranslate(Vector2 translation)
+        {
+            velocity = translation;
             position += velocity;
         }
-
+        public void stop()
+        {
+            velocity.X = 0;
+        }
         public void Update()
         {
             //position.Y += gravity;
+            position += velocity;
         }
     }
 }
