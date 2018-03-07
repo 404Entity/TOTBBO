@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/MIKZ/Source/Repos/TOTBBO/T_L_O_B_O/Content/SlimeSheet.png</SourceFile>
-  <SourceTime>2018-03-01T23:04:50.1644346+01:00</SourceTime>
+  <SourceTime>2018-03-07T15:19:12.946935+01:00</SourceTime>
   <DestFile>C:/Users/MIKZ/Source/Repos/TOTBBO/T_L_O_B_O/Content/bin/Windows/SlimeSheet.xnb</DestFile>
-  <DestTime>2018-03-06T21:41:28.8859276+01:00</DestTime>
+  <DestTime>2018-03-07T15:20:10.2202481+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
