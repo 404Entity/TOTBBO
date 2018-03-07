@@ -10,8 +10,9 @@ using Microsoft.Xna.Framework.Input;
 namespace T_L_O_B_O
 {
     enum DIRECTION { Back, Right, Front, Left };
-    class Player : Component, IUpdateable, ILoadable, IAnimateable, ICollisionStay, IGravity, /*ICollisionExit*/ ICollisionEnter
+    class Player : Component, IUpdateable, ILoadable, IAnimateable, ICollisionStay, IGravity, ICollisionExit, ICollisionEnter
     {
+        
         #region Fields
         private float speed;
         private Animator animator;
@@ -68,24 +69,35 @@ namespace T_L_O_B_O
                 {
                     strategy = new Idle(animator);
                 }
-                if (keyState.IsKeyDown(Keys.Space))
+                if (keyState.IsKeyDown(Keys.E))
                 {
                     strategy = new Attack(animator);
                 }
+                else if (isgrounded == true)
+                {
+                    if (keyState.IsKeyDown(Keys.Space))
+                    {
+                        strategy = new Jump(animator);
+                    }
+                }
+                
                 strategy.Execute(direction);
             }
             Fall(isgrounded);
+            Jump();
         }
         public void CreateAnimation()
         {
+            animator.CreateAnimation("WalkLeft", new Animation(8, 0, 0, 340, 436, 8, Vector2.Zero));
+            animator.CreateAnimation("WalkRight", new Animation(8, 450, 0, 340, 436, 8, Vector2.Zero));
             animator.CreateAnimation("IdleFront", new Animation(4, 0, 0, 90, 150, 6, Vector2.Zero));
             animator.CreateAnimation("IdleBack", new Animation(4, 0, 4, 90, 150, 6, Vector2.Zero));
-            animator.CreateAnimation("IdleLeft", new Animation(4, 0, 8, 90, 150, 6, Vector2.Zero));
-            animator.CreateAnimation("IdleRight", new Animation(4, 0, 12, 90, 150, 6, Vector2.Zero));
+            animator.CreateAnimation("IdleLeft", new Animation(1, 0, 0, 340, 436, 1, Vector2.Zero));
+            animator.CreateAnimation("IdleRight", new Animation(1, 450, 0, 340, 436, 1, Vector2.Zero));
             animator.CreateAnimation("WalkFront", new Animation(4, 150, 0, 90, 150, 6, Vector2.Zero));
             animator.CreateAnimation("WalkBack", new Animation(4, 150, 4, 90, 150, 6, Vector2.Zero));
-            animator.CreateAnimation("WalkLeft", new Animation(4, 150, 8, 90, 150, 6, Vector2.Zero));
-            animator.CreateAnimation("WalkRight", new Animation(4, 150, 12, 90, 150, 6, Vector2.Zero));
+            //animator.CreateAnimation("WalkLeft", new Animation(4, 150, 8, 90, 150, 6, Vector2.Zero));
+            //animator.CreateAnimation("WalkRight", new Animation(4, 150, 12, 90, 150, 6, Vector2.Zero));
             animator.CreateAnimation("AttackFront", new Animation(4, 300, 0, 145, 160, 8, new Vector2(-50, 0)));
             animator.CreateAnimation("AttackBack", new Animation(4, 465, 0, 170, 155, 8, new Vector2(-20, 0)));
             animator.CreateAnimation("AttackRight", new Animation(4, 620, 0, 150, 150, 8, Vector2.Zero));
@@ -94,7 +106,11 @@ namespace T_L_O_B_O
             animator.CreateAnimation("DieBack", new Animation(3, 920, 3, 150, 150, 5, Vector2.Zero));
             animator.CreateAnimation("DieLeft", new Animation(3, 1070, 0, 150, 150, 5, Vector2.Zero));
             animator.CreateAnimation("DieRight", new Animation(3, 1070, 3, 150, 150, 5, Vector2.Zero));
-            animator.PlayAnimation("IdleFront");
+            animator.CreateAnimation("JumpFront", new Animation(3, 1070, 3, 150, 150, 5, Vector2.Zero));
+            animator.CreateAnimation("JumpBack", new Animation(3, 1070, 3, 150, 150, 5, Vector2.Zero));
+            animator.CreateAnimation("JumpLeft", new Animation(3, 1070, 3, 150, 150, 5, Vector2.Zero));
+            animator.CreateAnimation("JumpRight", new Animation(3, 1070, 3, 150, 150, 5, Vector2.Zero));
+            animator.PlayAnimation("IdleLeft");
         }
 
         public void OnAnimationDone(string animationName)
@@ -123,19 +139,39 @@ namespace T_L_O_B_O
                 isgrounded = true;
                 gameObject.Transform.Translate(new Vector2(0, other.CollisionBox.Top - collider.CollisionBox.Bottom + 1));
             }
-            
             else if (collider.CollisionBox.Right >= other.CollisionBox.Left && collider.CollisionBox.Right - 10 <= other.CollisionBox.Left)
             {
-                gameObject.Transform.Translate(new Vector2(other.CollisionBox.Left - collider.CollisionBox.Right - 1));
+                gameObject.Transform.Translate(new Vector2(other.CollisionBox.Left - collider.CollisionBox.Right + 1, 0));
             }
-            
+            else if (collider.CollisionBox.Left <= other.CollisionBox.Right && collider.CollisionBox.Left + 10 >= other.CollisionBox.Right)
+            {
+                gameObject.Transform.Translate(new Vector2(other.CollisionBox.Right - collider.CollisionBox.Left, 0));
+            }
+            else if (collider.CollisionBox.Top <= other.CollisionBox.Bottom && collider.CollisionBox.Top + 10 >= other.CollisionBox.Bottom)
+            {
+                gameObject.Transform.Translate(new Vector2(other.CollisionBox.Top - collider.CollisionBox.Top, 0));
+            }
         }
 
         public void Fall(bool isgrounded)
         {
             if (!isgrounded)
             {
-                GameObject.Transform.Translate(new Vector2(0, 9.82f));
+                GameObject.Transform.Translate(new Vector2(0, 3));
+            }
+        }
+        
+        public void Jump()
+        {
+            KeyboardState keyState = Keyboard.GetState();
+            if (keyState.IsKeyDown(Keys.Space))
+            {
+                if (isgrounded == true)
+                {
+                    GameObject.Transform.Translate(new Vector2(0, -200));
+
+                    isgrounded = false;
+                }
             }
         }
         

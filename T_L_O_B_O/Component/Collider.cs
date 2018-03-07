@@ -20,6 +20,7 @@ namespace T_L_O_B_O
         private Animator animator;
         private Dictionary<string, Color[][]> pixels;
         private bool doCollisionChecks;
+        private float scale;
         public bool DoCollisionChecks
         {
             set { doCollisionChecks = value; }
@@ -28,20 +29,34 @@ namespace T_L_O_B_O
         {
             get
             {
-                return new Rectangle
-                (
+
+                if (spriteRender.Rectangle.Width < 2 && spriteRender.Rectangle.Height < 2)
+                {
+                    return new Rectangle
+                    (
+                    (int)(GameObject.Transform.Position.X),
+                    (int)(gameObject.Transform.Position.Y),
+                    (int)(spriteRender.Sprite.Width * scale),
+                    (int)(spriteRender.Sprite.Height * scale));
+                }
+                else
+                {
+                    return new Rectangle
+                    (
                     (int)(GameObject.Transform.Position.X + spriteRender.Offset.X),
                     (int)(gameObject.Transform.Position.Y + spriteRender.Offset.Y),
-                    spriteRender.Rectangle.Width,
-                    spriteRender.Rectangle.Height
+
+                    (int)(spriteRender.Rectangle.Width * scale),
+                    (int)(spriteRender.Rectangle.Height * scale)
                );
+                }
             }
         }
-        private int scale;
-        
+
+
         #endregion
         #region Constructor
-        public Collider(GameObject gameObject, bool CheckCollision, int scale) : base(gameObject)
+        public Collider(GameObject gameObject, bool CheckCollision, float scale) : base(gameObject)
         {
             isCollideWith = false;
             doCollisionChecks = CheckCollision;
@@ -55,10 +70,10 @@ namespace T_L_O_B_O
         #region Draw and LoadContent
         public void Draw(SpriteBatch spriteBatch)
         {
-            Rectangle topLine = new Rectangle(CollisionBox.X, CollisionBox.Y, CollisionBox.Width / scale, 1);
-            Rectangle bottomLine = new Rectangle(CollisionBox.X, CollisionBox.Y + CollisionBox.Height/scale, CollisionBox.Width / scale, 1);
-            Rectangle rightLine = new Rectangle(CollisionBox.X + CollisionBox.Width / scale, CollisionBox.Y, 1, CollisionBox.Height / scale);
-            Rectangle leftLine = new Rectangle(CollisionBox.X, CollisionBox.Y, 1, CollisionBox.Height / scale);
+            Rectangle topLine = new Rectangle(CollisionBox.X, CollisionBox.Y, CollisionBox.Width, 1);
+            Rectangle bottomLine = new Rectangle(CollisionBox.X, CollisionBox.Y + CollisionBox.Height, CollisionBox.Width, 1);
+            Rectangle rightLine = new Rectangle(CollisionBox.X + CollisionBox.Width, CollisionBox.Y, 1, CollisionBox.Height);
+            Rectangle leftLine = new Rectangle(CollisionBox.X, CollisionBox.Y, 1, CollisionBox.Height);
 
 
             if (isCollideWith)
@@ -138,7 +153,7 @@ namespace T_L_O_B_O
 
         private void CachePixels()
         {
-            foreach (KeyValuePair<string,Animation> pair in animator.MyAnimations)
+            foreach (KeyValuePair<string, Animation> pair in animator.MyAnimations)
             {
                 Animation animation = pair.Value;
                 Color[][] colors = new Color[(int)animation.Fps][];

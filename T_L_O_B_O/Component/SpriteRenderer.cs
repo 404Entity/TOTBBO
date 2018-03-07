@@ -42,10 +42,11 @@ namespace T_L_O_B_O
         public void LoadContent(ContentManager content)
         {
             sprite = content.Load<Texture2D>(spriteName);
+         
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(sprite, GameObject.Transform.Position + offset,rectangle, Color.White,0,Vector2.Zero,1,SpriteEffects.None,layerDepth);
+            spriteBatch.Draw(sprite, GameObject.Transform.Position + offset,rectangle, Color.White,0,Vector2.Zero,scale,SpriteEffects.None,layerDepth);
         }
     }
 }

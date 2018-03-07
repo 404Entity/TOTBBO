@@ -13,8 +13,7 @@ namespace T_L_O_B_O
     class Tiles: IDrawable, ILoadable
     {
 
-        protected Texture2D texture;
-        private List<Texture2D> picList = new List<Texture2D>();
+        private Texture2D texture;
         protected Rectangle rectangle;
         Map map;
 
@@ -33,18 +32,16 @@ namespace T_L_O_B_O
         }
 
         public Rectangle Rectangle { get => rectangle; set => rectangle = value; }
-
-
-
+        public Texture2D Texture { get => texture; set => texture = value; }
 
         public void LoadContent(ContentManager content)
         {
-            texture = content.Load<Texture2D>("Map" + i.ToString());
+            Texture = content.Load<Texture2D>("Map" + i.ToString());
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, rectangle, Color.White);
+            spriteBatch.Draw(Texture, rectangle, Color.White);
         }
     }
 }

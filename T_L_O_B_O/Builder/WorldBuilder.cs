@@ -15,9 +15,10 @@ namespace T_L_O_B_O
             GameObject worldBuilder = new GameObject();
             worldBuilder.AddComponent(new Transform(worldBuilder, position,0));
             worldBuilder.AddComponent(new SpriteRenderer(worldBuilder, "Map1", 1, 0.5f));
+            SpriteRenderer test = (SpriteRenderer)worldBuilder.GetComponent("SpriteRenderer");
             //worldBuilder.AddComponent(new Tiles(worldBuilder));
             worldBuilder.LoadContent(GameWorld.Instance.Content);
-            worldBuilder.AddComponent(new Collider(worldBuilder, false, 1));
+            worldBuilder.AddComponent(new Collider(worldBuilder, false, 0.5f));
             buildobject = worldBuilder;
         }
 
