@@ -18,7 +18,7 @@ namespace T_L_O_B_O
             SpriteRenderer test = (SpriteRenderer)worldBuilder.GetComponent("SpriteRenderer");
             //worldBuilder.AddComponent(new Tiles(worldBuilder));
             worldBuilder.LoadContent(GameWorld.Instance.Content);
-            worldBuilder.AddComponent(new Collider(worldBuilder, false, 0.5f));
+            worldBuilder.AddComponent(new Collider(worldBuilder, false, 1f));
             buildobject = worldBuilder;
         }
 
