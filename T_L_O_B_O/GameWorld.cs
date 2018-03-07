@@ -46,6 +46,7 @@ namespace T_L_O_B_O
         public static float ScreenHeight;
         private Camera camera;
         private GameObject player;
+        private BackGround backGround = new BackGround();
         static private GameWorld instance;
         static public GameWorld Instance
         {
@@ -109,6 +110,7 @@ namespace T_L_O_B_O
             map.LoadContent(Content);
             // instanciate the camera
             camera = new Camera();
+            backGround.LoadContent(Content);
             // TODO: use this.Content to load your game content here
         }
 
@@ -180,7 +182,7 @@ namespace T_L_O_B_O
             GraphicsDevice.Clear(Color.CornflowerBlue);
             // TODO: Add your drawing code here
             spriteBatch.Begin(transformMatrix: camera.Transform);
-            spriteBatch.Draw(Content.Load<Texture2D>("BackGround"), new Vector2(0,-80), Color.White);
+            backGround.Draw(spriteBatch);
             map.Draw(spriteBatch);
             foreach (GameObject item in gameObjectList)
             {
@@ -191,6 +193,11 @@ namespace T_L_O_B_O
             spriteBatch.Begin();
             spriteBatch.End();
             base.Draw(gameTime);
+        }
+
+        public void BackGround()
+        {
+            
         }
     }
 }
