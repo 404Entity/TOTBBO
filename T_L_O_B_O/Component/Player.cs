@@ -20,6 +20,12 @@ namespace T_L_O_B_O
         private DIRECTION direction;
         private bool canMove;
         private bool isgrounded;
+
+        public bool CanMove
+        {
+            get { return canMove; }
+            set { canMove = value; }
+        }
         #endregion
         #region Constructor
         public Player(GameObject gameobject) : base(gameobject)
@@ -77,7 +83,7 @@ namespace T_L_O_B_O
                 {
                     if (keyState.IsKeyDown(Keys.Space))
                     {
-                        strategy = new Jump(animator);
+                        strategy = new Jump(animator, this);
                     }
                 }
                 
@@ -123,6 +129,10 @@ namespace T_L_O_B_O
             {
                 //promt i finished an attack
 
+            }
+            if (animationName.Contains("Jump"))
+            {
+                canMove = true;
             }
         }
 

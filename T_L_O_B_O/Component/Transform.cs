@@ -12,12 +12,14 @@ namespace T_L_O_B_O
     class Transform : Component, IUpdateable
     {
         private Vector2 position;
+        private Vector2 velocity;
         int gravity;
         public Vector2 Position
         {
             get { return position; }
             set { position = value; }
         }
+        public Vector2 Velocity { get { return velocity; } set { velocity = value; } }
         public Transform(GameObject gameobject, Vector2 position, int gravity) :base(gameobject)
         {
             this.position = position;
@@ -26,7 +28,8 @@ namespace T_L_O_B_O
         }
         public void Translate(Vector2 translation)
         {
-            position += translation;
+            velocity = translation;
+            position += velocity;
         }
 
         public void Update()
