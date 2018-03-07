@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace T_L_O_B_O
 {
-    class ChestOfAThousandGrogs : Component, ICollisionStay
+    class ChestOfAThousandGrogs : Component
     {
         //Fields
 
@@ -24,10 +24,6 @@ namespace T_L_O_B_O
 
         
 
-        //Methods
-        public void OnCollisionStay(Collider other)
-        {
-            throw new NotImplementedException();
-        }
+        //Method
     }
 }

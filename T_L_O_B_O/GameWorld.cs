@@ -88,13 +88,15 @@ namespace T_L_O_B_O
             Director director = new Director(new PlayerBuilder());
             player = director.Construct(new Vector2(200,200));
             gameObjectList.Add(player);
-            //Director Chest = new Director(new ChestBuilder());
-            //chest = Chest.Construct(new Vector2(200, 200));
-
+            Director Chest = new Director(new ChestBuilder());
+            Chest.Construct(new Vector2(-50, 200));
+            
             map = new Map();
             
             base.Initialize();
         }
+
+        Texture2D Chest;
 
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
@@ -194,11 +196,6 @@ namespace T_L_O_B_O
             spriteBatch.Begin();
             spriteBatch.End();
             base.Draw(gameTime);
-        }
-
-        public void BackGround()
-        {
-            
         }
     }
 }

@@ -157,7 +157,7 @@
 /processorParam:TextureFormat=Color
 /build:Dwarf_Sprite_Sheet.png
 
-#begin ChestImage.jpg
+#begin ChestImage.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -167,5 +167,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:ChestImage.jpg
+/build:ChestImage.png
 
