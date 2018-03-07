@@ -9,15 +9,17 @@ namespace T_L_O_B_O
     class Jump:IStrategy
     {
         Animator animator;
-
-        public Jump(Animator animator)
+        Player player;
+        public Jump(Animator animator,Player player)
         {
             this.animator = animator;
+            this.player = player;
         }
 
         public void Execute(DIRECTION direction)
         {
             animator.PlayAnimation("Jump" + direction);
+            player.CanMove = false;
         }
     }
 }
