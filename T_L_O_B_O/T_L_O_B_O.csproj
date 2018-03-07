@@ -94,7 +94,6 @@
     <Content Include="bin\Windows\x86\Debug\T_L_O_B_O.exe" />
     <Content Include="bin\Windows\x86\Debug\T_L_O_B_O.pdb" />
     <Content Include="Content\Hero.png" />
-    <Content Include="Content\Map1.jpg" />
     <Content Include="Content\Map2.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>

@@ -29,7 +29,7 @@ namespace T_L_O_B_O
         {
             get
             {
-               
+
                 if (spriteRender.Rectangle.Width < 2 && spriteRender.Rectangle.Height < 2)
                 {
                     return new Rectangle
@@ -37,22 +37,18 @@ namespace T_L_O_B_O
                     (int)(GameObject.Transform.Position.X),
                     (int)(gameObject.Transform.Position.Y),
                     (int)(spriteRender.Sprite.Width * scale),
-                    (int)(spriteRender.Sprite.Height* scale));
+                    (int)(spriteRender.Sprite.Height * scale));
                 }
                 else
                 {
-                   return new Rectangle
-                   (
-                   (int)(GameObject.Transform.Position.X + spriteRender.Offset.X),
-                   (int)(gameObject.Transform.Position.Y + spriteRender.Offset.Y),
-<<<<<<< HEAD
-                   (int)(spriteRender.Rectangle.Width * scale),
-                   (int)(spriteRender.Rectangle.Height * scale)
-              );
-=======
-                   spriteRender.Rectangle.Width,
-                   spriteRender.Rectangle.Height);
->>>>>>> 03ebd1bf9c9ff38b75aca2a6d0bc1dbf33aaadba
+                    return new Rectangle
+                    (
+                    (int)(GameObject.Transform.Position.X + spriteRender.Offset.X),
+                    (int)(gameObject.Transform.Position.Y + spriteRender.Offset.Y),
+
+                    (int)(spriteRender.Rectangle.Width * scale),
+                    (int)(spriteRender.Rectangle.Height * scale)
+               );
                 }
             }
         }
@@ -75,13 +71,8 @@ namespace T_L_O_B_O
         public void Draw(SpriteBatch spriteBatch)
         {
             Rectangle topLine = new Rectangle(CollisionBox.X, CollisionBox.Y, CollisionBox.Width, 1);
-<<<<<<< HEAD
             Rectangle bottomLine = new Rectangle(CollisionBox.X, CollisionBox.Y + CollisionBox.Height, CollisionBox.Width, 1);
             Rectangle rightLine = new Rectangle(CollisionBox.X + CollisionBox.Width, CollisionBox.Y, 1, CollisionBox.Height);
-=======
-            Rectangle bottomLine = new Rectangle(CollisionBox.X, CollisionBox.Y + CollisionBox.Height / scale, CollisionBox.Width, 1);
-            Rectangle rightLine = new Rectangle(CollisionBox.X + CollisionBox.Width / scale, CollisionBox.Y, 1, CollisionBox.Height);
->>>>>>> 03ebd1bf9c9ff38b75aca2a6d0bc1dbf33aaadba
             Rectangle leftLine = new Rectangle(CollisionBox.X, CollisionBox.Y, 1, CollisionBox.Height);
 
 
