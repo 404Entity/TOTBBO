@@ -112,10 +112,10 @@ namespace T_L_O_B_O
             animator.CreateAnimation("DieBack", new Animation(3, 920, 3, 150, 150, 5, Vector2.Zero));
             animator.CreateAnimation("DieLeft", new Animation(3, 1070, 0, 150, 150, 5, Vector2.Zero));
             animator.CreateAnimation("DieRight", new Animation(3, 1070, 3, 150, 150, 5, Vector2.Zero));
-            animator.CreateAnimation("JumpFront", new Animation(3, 1070, 3, 150, 150, 5, Vector2.Zero));
-            animator.CreateAnimation("JumpBack", new Animation(3, 1070, 3, 150, 150, 5, Vector2.Zero));
-            animator.CreateAnimation("JumpLeft", new Animation(3, 1070, 3, 150, 150, 5, Vector2.Zero));
-            animator.CreateAnimation("JumpRight", new Animation(3, 1070, 3, 150, 150, 5, Vector2.Zero));
+            animator.CreateAnimation("JumpFront", new Animation(9, 900, 0, 363, 436, 9, Vector2.Zero));
+            animator.CreateAnimation("JumpBack", new Animation(9, 900, 0, 363, 436, 9, Vector2.Zero));
+            animator.CreateAnimation("JumpLeft", new Animation(9, 900, 0, 363, 436, 9, Vector2.Zero));
+            animator.CreateAnimation("JumpRight", new Animation(9, 1350, 0, 363, 436, 9, Vector2.Zero));
             animator.PlayAnimation("IdleLeft");
         }
 
