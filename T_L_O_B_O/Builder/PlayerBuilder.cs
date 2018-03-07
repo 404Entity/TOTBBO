@@ -17,7 +17,7 @@ namespace T_L_O_B_O
             Player.AddComponent(new SpriteRenderer(Player, "Dwarf_Sprite_Sheet", 1, 0.3f));
             Player.AddComponent(new Animator(Player));
             Player.AddComponent(new Player(Player));
-            Player.AddComponent(new Collider(Player,true,1));
+            Player.AddComponent(new Collider(Player,true,0.3f));
             buildObject = Player;
         }
 

@@ -73,10 +73,14 @@ namespace T_L_O_B_O
                 {
                     strategy = new Attack(animator);
                 }
-                else if (keyState.IsKeyDown(Keys.Space))
+                else if (isgrounded == true)
                 {
-                    strategy = new Jump(animator);
+                    if (keyState.IsKeyDown(Keys.Space))
+                    {
+                        strategy = new Jump(animator);
+                    }
                 }
+                
                 strategy.Execute(direction);
             }
             Fall(isgrounded);
@@ -88,8 +92,8 @@ namespace T_L_O_B_O
             animator.CreateAnimation("WalkRight", new Animation(8, 450, 0, 340, 436, 8, Vector2.Zero));
             animator.CreateAnimation("IdleFront", new Animation(4, 0, 0, 90, 150, 6, Vector2.Zero));
             animator.CreateAnimation("IdleBack", new Animation(4, 0, 4, 90, 150, 6, Vector2.Zero));
-            animator.CreateAnimation("IdleLeft", new Animation(4, 0, 8, 90, 150, 6, Vector2.Zero));
-            animator.CreateAnimation("IdleRight", new Animation(4, 0, 12, 90, 150, 6, Vector2.Zero));
+            animator.CreateAnimation("IdleLeft", new Animation(1, 0, 0, 340, 436, 1, Vector2.Zero));
+            animator.CreateAnimation("IdleRight", new Animation(1, 450, 0, 340, 436, 1, Vector2.Zero));
             animator.CreateAnimation("WalkFront", new Animation(4, 150, 0, 90, 150, 6, Vector2.Zero));
             animator.CreateAnimation("WalkBack", new Animation(4, 150, 4, 90, 150, 6, Vector2.Zero));
             //animator.CreateAnimation("WalkLeft", new Animation(4, 150, 8, 90, 150, 6, Vector2.Zero));
@@ -106,7 +110,7 @@ namespace T_L_O_B_O
             animator.CreateAnimation("JumpBack", new Animation(3, 1070, 3, 150, 150, 5, Vector2.Zero));
             animator.CreateAnimation("JumpLeft", new Animation(3, 1070, 3, 150, 150, 5, Vector2.Zero));
             animator.CreateAnimation("JumpRight", new Animation(3, 1070, 3, 150, 150, 5, Vector2.Zero));
-            animator.PlayAnimation("IdleFront");
+            animator.PlayAnimation("IdleLeft");
         }
 
         public void OnAnimationDone(string animationName)
@@ -168,12 +172,6 @@ namespace T_L_O_B_O
 
                     isgrounded = false;
                 }
-            }
-            if (isgrounded == false)
-            {
-                float i = 1;
-
-
             }
         }
         
