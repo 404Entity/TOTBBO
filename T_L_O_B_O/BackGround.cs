@@ -20,12 +20,11 @@ namespace T_L_O_B_O
         {
             backGround = content.Load<Texture2D>("BackGround");
         }
-
         public void Draw(SpriteBatch spriteBatch)
         {
             for (int i = 0; i < 5; i++)
             {
-                spriteBatch.Draw(backGround, new Vector2(0, -80), Color.White);
+                spriteBatch.Draw(backGround, new Vector2(i*1024, -80), Color.White);
             }
         }
     }

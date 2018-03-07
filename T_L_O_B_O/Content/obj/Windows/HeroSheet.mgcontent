@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Morten/Documents/GitHub/TOTBBO/T_L_O_B_O/Content/HeroSheet.png</SourceFile>
-  <SourceTime>2018-03-04T13:28:42.9283459+01:00</SourceTime>
-  <DestFile>C:/Users/Morten/Documents/GitHub/TOTBBO/T_L_O_B_O/Content/bin/Windows/HeroSheet.xnb</DestFile>
-  <DestTime>2018-03-07T10:01:28.1928897+01:00</DestTime>
+  <SourceFile>C:/Users/MortenEllegaardHanse/Documents/GitHub/TOTBBO/T_L_O_B_O/Content/HeroSheet.png</SourceFile>
+  <SourceTime>2018-03-01T09:23:26.7050377+01:00</SourceTime>
+  <DestFile>C:/Users/MortenEllegaardHanse/Documents/GitHub/TOTBBO/T_L_O_B_O/Content/bin/Windows/HeroSheet.xnb</DestFile>
+  <DestTime>2018-03-07T20:25:24.7367221+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
