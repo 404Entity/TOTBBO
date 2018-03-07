@@ -42,8 +42,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Animation.cs" />
+    <Compile Include="BackGround.cs" />
     <Compile Include="Builder\ScissorBuilder.cs" />
     <Compile Include="Camera.cs" />
+    <Compile Include="Builder\ChestBuilder.cs" />
+    <Compile Include="Component\ChestOfAThousandGrogs.cs" />
     <Compile Include="Component\Animator.cs" />
     <Compile Include="Component\Collider.cs" />
     <Compile Include="Component\Component.cs" />

@@ -36,8 +36,8 @@ namespace T_L_O_B_O
                     (
                     (int)(GameObject.Transform.Position.X),
                     (int)(gameObject.Transform.Position.Y),
-                    (int)(spriteRender.Sprite.Width * scale),
-                    (int)(spriteRender.Sprite.Height * scale));
+                    (int)(spriteRender.Sprite.Width*scale),
+                    (int)(spriteRender.Sprite.Height*scale));
                 }
                 else
                 {
