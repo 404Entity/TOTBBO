@@ -22,16 +22,7 @@ namespace T_L_O_B_O
 
         }
 
-
-
-
-
-
-
-
-
-
-
+        
 
         //Methods
         public void OnCollisionStay(Collider other)

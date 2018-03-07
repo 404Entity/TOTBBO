@@ -14,10 +14,10 @@ namespace T_L_O_B_O
         {
             GameObject Chest = new GameObject();
             Chest.AddComponent(new Transform(Chest, position, 0));
-            Chest.AddComponent(new SpriteRenderer(Chest, "ChestSprite", 1, 1f));
-            Chest.AddComponent(new Animator(Chest));
+            Chest.AddComponent(new SpriteRenderer(Chest, "ChestImage", 1, 1f));
             Chest.AddComponent(new ChestOfAThousandGrogs(Chest));
             Chest.AddComponent(new Collider(Chest, true, 1f));
+            GameWorld.Instance.AddList.Add(Chest);
             buildObject = Chest;
         }
         public GameObject GetResult()

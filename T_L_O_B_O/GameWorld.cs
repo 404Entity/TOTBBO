@@ -45,7 +45,7 @@ namespace T_L_O_B_O
         public static float ScreenWidth;
         public static float ScreenHeight;
         private Camera camera;
-        private GameObject player;
+        private GameObject player, chest;
         private BackGround backGround = new BackGround();
         static private GameWorld instance;
         static public GameWorld Instance
@@ -88,8 +88,9 @@ namespace T_L_O_B_O
             Director director = new Director(new PlayerBuilder());
             player = director.Construct(new Vector2(200,200));
             gameObjectList.Add(player);
-            
-            
+            //Director Chest = new Director(new ChestBuilder());
+            //chest = Chest.Construct(new Vector2(200, 200));
+
             map = new Map();
             
             base.Initialize();
