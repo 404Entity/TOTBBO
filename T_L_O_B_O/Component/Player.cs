@@ -85,14 +85,10 @@ namespace T_L_O_B_O
             }
             Fall(isgrounded);
             Jump();
-            if (gameObject.Transform.Position.Y > 1000)
+            if (gameObject.Transform.Position.Y > 1000 && gameObject.Transform.Position.Y < 1010)
             {
                 Form1 f = new Form1();
                 f.Show();
-                while (true)
-                {
-
-                }
             }
         }
         public void CreateAnimation()
