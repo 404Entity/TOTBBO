@@ -33,6 +33,16 @@ namespace T_L_O_B_O
             if (inactive.Count <= 0)
             {
                 Director director = new Director(new EnemyBuilder());
+                Random pickone = new Random();
+                if (pickone.Next(10)>=5)
+                {
+                    director = new Director(new EnemyBuilder());
+                }
+                else
+                {
+                    director = new Director(new ScissorBuilder());
+                }
+               
 
 
                 GameObject newlySpawned = director.Construct(location);

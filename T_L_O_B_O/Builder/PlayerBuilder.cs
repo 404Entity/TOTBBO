@@ -13,7 +13,7 @@ namespace T_L_O_B_O
         public void BuildGameObject(Vector2 position)
         {
             GameObject Player = new GameObject();            
-            Player.AddComponent(new Transform(Player, position,10));
+            Player.AddComponent(new Transform(Player, position));
             Player.AddComponent(new SpriteRenderer(Player, "Dwarf_Sprite_Sheet", 1, 0.3f));
             Player.AddComponent(new Animator(Player));
             Player.AddComponent(new Player(Player));

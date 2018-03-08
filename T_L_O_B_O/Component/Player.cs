@@ -50,28 +50,34 @@ namespace T_L_O_B_O
             {
                 if (keyState.IsKeyDown(Keys.W) || keyState.IsKeyDown(Keys.D) || keyState.IsKeyDown(Keys.S) || keyState.IsKeyDown(Keys.A))
                 {
+                    Vector2 translation = Vector2.Zero;
                     if (keyState.IsKeyDown(Keys.W))
                     {
                         direction = DIRECTION.Back;
+                        translation += new Vector2(0, 2);
                     }
                     else if (keyState.IsKeyDown(Keys.D))
                     {
                         direction = DIRECTION.Right;
+                        translation += new Vector2(2f, 0);
                     }
                     else if (keyState.IsKeyDown(Keys.S))
                     {
                         direction = DIRECTION.Front;
+                        translation += new Vector2(0, -2);
                     }
                     else if (keyState.IsKeyDown(Keys.A))
                     {
                         direction = DIRECTION.Left;
+                        translation += new Vector2(-2f, 0);
                     }
-                    if (!(strategy is Walk))
+                    if (!(strategy is Walk) && !(strategy is Jump))
                     {
                         strategy = new Walk(animator, gameObject.Transform, speed);
                     }
+                    gameObject.Transform.Translate(translation * GameWorld.Instance.deltaTime * speed);
                 }
-                else
+                else if (!(strategy is Jump))
                 {
                     strategy = new Idle(animator);
                     gameObject.Transform.stop();
@@ -103,16 +109,10 @@ namespace T_L_O_B_O
             animator.CreateAnimation("IdleRight", new Animation(1, 450, 0, 340, 436, 1, Vector2.Zero));
             animator.CreateAnimation("WalkFront", new Animation(1, 150, 0, 90, 150, 6, Vector2.Zero));
             animator.CreateAnimation("WalkBack", new Animation(4, 150, 4, 90, 150, 6, Vector2.Zero));
-            //animator.CreateAnimation("WalkLeft", new Animation(4, 150, 8, 90, 150, 6, Vector2.Zero));
-            //animator.CreateAnimation("WalkRight", new Animation(4, 150, 12, 90, 150, 6, Vector2.Zero));
             animator.CreateAnimation("AttackFront", new Animation(9, 1890, 0, 414, 460, 9, new Vector2(10, 0)));
             animator.CreateAnimation("AttackBack", new Animation(9, 1890, 0, 414, 460, 9, new Vector2(10, 0)));
             animator.CreateAnimation("AttackRight", new Animation(9, 2388, 0, 414, 460, 9, Vector2.Zero));
             animator.CreateAnimation("AttackLeft", new Animation(9, 1890, 0, 414, 460, 9, new Vector2(10, 0)));
-            //animator.CreateAnimation("DieFront", new Animation(3, 920, 0, 150, 150, 5, Vector2.Zero));
-            //animator.CreateAnimation("DieBack", new Animation(3, 920, 3, 150, 150, 5, Vector2.Zero));
-            //animator.CreateAnimation("DieLeft", new Animation(3, 1070, 0, 150, 150, 5, Vector2.Zero));
-            //animator.CreateAnimation("DieRight", new Animation(3, 1070, 3, 150, 150, 5, Vector2.Zero));
             animator.CreateAnimation("JumpFront", new Animation(9, 930, 0, 363, 436, 9, Vector2.Zero));
             animator.CreateAnimation("JumpBack", new Animation(9, 930, 0, 363, 436, 9, Vector2.Zero));
             animator.CreateAnimation("JumpLeft", new Animation(9, 940, 0, 363, 436, 9, Vector2.Zero));
@@ -133,19 +133,21 @@ namespace T_L_O_B_O
             }
             if (animationName.Contains("Jump"))
             {
-                canMove = true;
+                strategy = null;
             }
         }
 
         public void OnCollisionStay(Collider other)
         {
-            if (strategy is Attack && (Enemy)other.GameObject.GetComponent("Enemy") != null)
-            {
-                GameWorld.Instance.RemoveList.Add(other.GameObject);
-            }
             Collider collider = (Collider)gameObject.GetComponent("Collider");
-
-            if (collider.CollisionBox.Bottom >= other.CollisionBox.Top && collider.CollisionBox.Bottom - 20 <= other.CollisionBox.Top)
+            if ((Enemy)other.GameObject.GetComponent("Enemy") != null || (Scissor)other.GameObject.GetComponent("Scissor") != null) 
+            {
+                if (strategy is Attack)
+                {
+                    GameWorld.Instance.RemoveList.Add(other.GameObject);
+                }
+            }
+            else if (collider.CollisionBox.Bottom >= other.CollisionBox.Top && collider.CollisionBox.Bottom - 20 <= other.CollisionBox.Top)
             {
                 isgrounded = true;
                 gameObject.Transform.Velocity += new Vector2(0, -gameObject.Transform.Velocity.Y);

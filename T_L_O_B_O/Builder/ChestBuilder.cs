@@ -13,7 +13,7 @@ namespace T_L_O_B_O
         public void BuildGameObject(Vector2 position)
         {
             GameObject Chest = new GameObject();
-            Chest.AddComponent(new Transform(Chest, position, 2));
+            Chest.AddComponent(new Transform(Chest, position));
             Chest.AddComponent(new SpriteRenderer(Chest, "ChestImage", 1, 0.5f));
             Chest.AddComponent(new ChestOfAThousandGrogs(Chest));
             Chest.LoadContent(GameWorld.Instance.Content);

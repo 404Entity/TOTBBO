@@ -13,20 +13,19 @@ namespace T_L_O_B_O
     class ScissorBuilder : IBuilder
     {
         private GameObject buildObject;
-        public void BuildGameOBject(Vector2 position)
-        {
-            GameObject Scissor = new GameObject();
-            Scissor.AddComponent(new Transform(Scissor, position,1));
-            Scissor.AddComponent(new SpriteRenderer(Scissor, "s", 1, 0.5f));
-            Scissor.AddComponent(new Animator(Scissor));
-            //Scissor.AddComponent(new Scissor);
-            Scissor.AddComponent(new Collider(Scissor, false,1));
-            buildObject = Scissor;
-        }
+
+
 
         public void BuildGameObject(Vector2 position)
         {
-            throw new NotImplementedException();
+            GameObject Scissor = new GameObject();
+            Scissor.AddComponent(new Transform(Scissor, position));
+            Scissor.AddComponent(new SpriteRenderer(Scissor, "Scissor_sheet", 1, 0.1f));
+            Scissor.AddComponent(new Animator(Scissor));
+            Scissor.AddComponent(new Scissor(Scissor));
+            Scissor.LoadContent(GameWorld.Instance.Content);
+            Scissor.AddComponent(new Collider(Scissor, false, 0.1f));
+            buildObject = Scissor;
         }
 
         public GameObject GetResult()
