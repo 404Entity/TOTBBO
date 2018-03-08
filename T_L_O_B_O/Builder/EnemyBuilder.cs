@@ -18,7 +18,7 @@ namespace T_L_O_B_O
             slime.AddComponent(new Animator(slime));
             slime.AddComponent(new Enemy(slime));
             slime.LoadContent(GameWorld.Instance.Content);
-            slime.AddComponent(new Collider(slime, false, 2));
+            slime.AddComponent(new Collider(slime, false, 0.5f));
             buildobject = slime;
         }
 
