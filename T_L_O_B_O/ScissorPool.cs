@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace T_L_O_B_O
 {
-    class EnemyPool
+    class ScissorPool
     {
         private List<GameObject> inactive;
         private List<GameObject> active;
@@ -21,7 +21,7 @@ namespace T_L_O_B_O
             get { return active; }
             set { active = value; }
         }
-        public EnemyPool()
+        public ScissorPool()
         {
             inactive = new List<GameObject>();
             active = new List<GameObject>();

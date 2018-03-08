@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/MIKZ/Source/Repos/TOTBBO/T_L_O_B_O/Content/HeroStrip.png</SourceFile>
-  <SourceTime>2018-03-01T10:24:31.7332044+01:00</SourceTime>
-  <DestFile>C:/Users/MIKZ/Source/Repos/TOTBBO/T_L_O_B_O/Content/bin/Windows/HeroStrip.xnb</DestFile>
-  <DestTime>2018-03-08T10:34:26.0173912+01:00</DestTime>
+  <SourceFile>C:/Users/MortenEllegaardHanse/Documents/GitHub/TOTBBO/T_L_O_B_O/Content/HeroStrip.png</SourceFile>
+  <SourceTime>2018-03-01T09:23:26.7420543+01:00</SourceTime>
+  <DestFile>C:/Users/MortenEllegaardHanse/Documents/GitHub/TOTBBO/T_L_O_B_O/Content/bin/Windows/HeroStrip.xnb</DestFile>
+  <DestTime>2018-03-08T10:39:33.2290881+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

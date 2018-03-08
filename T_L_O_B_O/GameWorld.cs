@@ -39,7 +39,7 @@ namespace T_L_O_B_O
         }
         public float deltaTime;
 
-        private EnemyPool enemypool;
+        private ScissorPool enemypool;
         Map map;
 
         public static float ScreenWidth;
@@ -84,7 +84,7 @@ namespace T_L_O_B_O
             removeList = new List<GameObject>();
             addList = new List<GameObject>();
             colliders = new List<Collider>();
-            enemypool = new EnemyPool();
+            enemypool = new ScissorPool();
             Director director = new Director(new PlayerBuilder());
             player = director.Construct(new Vector2(200,200));
             gameObjectList.Add(player);
