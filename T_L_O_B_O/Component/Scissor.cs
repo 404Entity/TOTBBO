@@ -7,8 +7,13 @@ using Microsoft.Xna.Framework.Content;
 
 namespace T_L_O_B_O
 {
-    class Scissor : ILoadable, IUpdateable
+    class Scissor : ILoadable, IUpdateable, IAnimateable
     {
+        private Animator animator;
+        private IStrategy strategy;
+        private DIRECTION _direction;
+
+        
         public Scissor()
         {
         }
@@ -18,6 +23,14 @@ namespace T_L_O_B_O
             throw new NotImplementedException();
         }
 
+        public void OnAnimationDone(string animationName)
+        {
+            throw new NotImplementedException();
+        }
+        public void CreateAnimation()
+        {
+
+        }
         public void Update()
         {
             throw new NotImplementedException();
