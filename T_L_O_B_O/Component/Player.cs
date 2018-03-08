@@ -157,6 +157,7 @@ namespace T_L_O_B_O
             }
             else if (collider.CollisionBox.Left <= other.CollisionBox.Right && collider.CollisionBox.Left + 10 >= other.CollisionBox.Right)
             {
+                
                 gameObject.Transform.Translate2(new Vector2(other.CollisionBox.Right - collider.CollisionBox.Left, 0));
             }
             else if (collider.CollisionBox.Top <= other.CollisionBox.Bottom && collider.CollisionBox.Top + 10 >= other.CollisionBox.Bottom)

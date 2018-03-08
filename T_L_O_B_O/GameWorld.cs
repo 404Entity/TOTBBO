@@ -89,7 +89,7 @@ namespace T_L_O_B_O
             player = director.Construct(new Vector2(200,200));
             gameObjectList.Add(player);
             Director Chest = new Director(new ChestBuilder());
-            Chest.Construct(new Vector2(-50, 200));
+            Chest.Construct(new Vector2(1950, 340));
             
             map = new Map();
             
