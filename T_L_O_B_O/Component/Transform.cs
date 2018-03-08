@@ -43,9 +43,17 @@ namespace T_L_O_B_O
         {
             velocity.X = 0;
         }
+        public void CorrectMove(Vector2 Correction)
+        {
+            position += Correction;
+        }
         public void Update()
         {
             //position.Y += gravity;
+            if (velocity.Y > 12)
+            {
+                velocity.Y = 10;
+            }
             position += velocity;
         }
     }
