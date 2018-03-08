@@ -48,7 +48,7 @@ namespace T_L_O_B_O
 
                     (int)(spriteRender.Rectangle.Width * scale),
                     (int)(spriteRender.Rectangle.Height * scale)
-               );
+                );
                 }
             }
         }
