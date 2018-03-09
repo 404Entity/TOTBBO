@@ -19,7 +19,6 @@ namespace T_L_O_B_O
         public void Execute(DIRECTION direction)
         {
             animator.PlayAnimation("Jump" + direction);
-            player.CanMove = false;
         }
     }
 }

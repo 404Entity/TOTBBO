@@ -26,10 +26,7 @@ namespace T_L_O_B_O
             this.Rectangle = newRectangle;
             this.map = map;
         }
-
-        public Tiles(GameObject gameObject)
-        {
-        }
+        
 
         public Rectangle Rectangle { get => rectangle; set => rectangle = value; }
         public Texture2D Texture { get => texture; set => texture = value; }

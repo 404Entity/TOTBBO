@@ -10,5 +10,6 @@ namespace T_L_O_B_O
     {
         GameObject GetResult();
         void BuildGameObject(Vector2 position);
+        void BuildGameObject(Vector2 position,int id);
     }
 }

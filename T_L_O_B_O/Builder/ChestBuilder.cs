@@ -13,13 +13,20 @@ namespace T_L_O_B_O
         public void BuildGameObject(Vector2 position)
         {
             GameObject Chest = new GameObject();
-            Chest.AddComponent(new Transform(Chest, position, 0));
-            Chest.AddComponent(new SpriteRenderer(Chest, "ChestImage", 1, 1f));
+            Chest.AddComponent(new Transform(Chest, position));
+            Chest.AddComponent(new SpriteRenderer(Chest, "ChestImage", 1, 0.5f));
             Chest.AddComponent(new ChestOfAThousandGrogs(Chest));
-            Chest.AddComponent(new Collider(Chest, true, 1f));
+            Chest.LoadContent(GameWorld.Instance.Content);
+            Chest.AddComponent(new Collider(Chest, true, 0.5f));
             GameWorld.Instance.AddList.Add(Chest);
             buildObject = Chest;
         }
+
+        public void BuildGameObject(Vector2 position, int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public GameObject GetResult()
         {
             return buildObject;

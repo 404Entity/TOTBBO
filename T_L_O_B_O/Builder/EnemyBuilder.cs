@@ -13,13 +13,18 @@ namespace T_L_O_B_O
         public void BuildGameObject(Vector2 position)
         {
             GameObject slime = new GameObject();
-            slime.AddComponent(new Transform(slime, position,1));
+            slime.AddComponent(new Transform(slime, position));
             slime.AddComponent(new SpriteRenderer(slime, "SlimeSheet", 1, 0.5f));
             slime.AddComponent(new Animator(slime));
             slime.AddComponent(new Enemy(slime));
             slime.LoadContent(GameWorld.Instance.Content);
-            slime.AddComponent(new Collider(slime, false, 2));
+            slime.AddComponent(new Collider(slime, false, 0.5f));
             buildobject = slime;
+        }
+
+        public void BuildGameObject(Vector2 position, int id)
+        {
+            throw new NotImplementedException();
         }
 
         public GameObject GetResult()

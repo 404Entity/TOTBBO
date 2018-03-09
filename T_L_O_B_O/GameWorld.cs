@@ -39,7 +39,7 @@ namespace T_L_O_B_O
         }
         public float deltaTime;
 
-        private EnemyPool enemypool;
+        private ScissorPool enemypool;
         Map map;
 
         public static float ScreenWidth;
@@ -84,13 +84,13 @@ namespace T_L_O_B_O
             removeList = new List<GameObject>();
             addList = new List<GameObject>();
             colliders = new List<Collider>();
-            enemypool = new EnemyPool();
+            enemypool = new ScissorPool();
             Director director = new Director(new PlayerBuilder());
             player = director.Construct(new Vector2(200,200));
             gameObjectList.Add(player);
-            //Director Chest = new Director(new ChestBuilder());
-            //chest = Chest.Construct(new Vector2(200, 200));
-
+            Director Chest = new Director(new ChestBuilder());
+            Chest.Construct(new Vector2(1950, 340));
+            
             map = new Map();
             
             base.Initialize();
@@ -143,7 +143,7 @@ namespace T_L_O_B_O
             {
                 foreach (GameObject item in gameObjectList)
                 {
-                    if ((item.GetComponent("Enemy") != null))
+                    if ((item.GetComponent("Enemy") != null) || (item.GetComponent("Scissor") != null))
                     {
                        enemypool.ReleaseObject(item);
                        break;
@@ -155,12 +155,17 @@ namespace T_L_O_B_O
             {
                 item.Update(gameTime);
             }
+            //adds new item to the loop
             foreach (GameObject item in addList)
             {
-                item.LoadContent(Content);
-                gameObjectList.Add(item);
+                if (item != null)
+                {
+                    item.LoadContent(Content);
+                    gameObjectList.Add(item);
+                }
             }
             addList.Clear();
+            //removes items from the loop
             foreach (GameObject item in removeList)
             {
                 gameObjectList.Remove(item);
@@ -190,15 +195,10 @@ namespace T_L_O_B_O
                 item.Draw(spriteBatch);
             }
             spriteBatch.End();
-            // UI Sprites not affektede
+            // UI Sprites not affected
             spriteBatch.Begin();
             spriteBatch.End();
             base.Draw(gameTime);
-        }
-
-        public void BackGround()
-        {
-            
         }
     }
 }

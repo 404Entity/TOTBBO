@@ -36,8 +36,8 @@ namespace T_L_O_B_O
                     (
                     (int)(GameObject.Transform.Position.X),
                     (int)(gameObject.Transform.Position.Y),
-                    (int)(spriteRender.Sprite.Width*scale),
-                    (int)(spriteRender.Sprite.Height*scale));
+                    (int)(spriteRender.Sprite.Width * scale),
+                    (int)(spriteRender.Sprite.Height * scale));
                 }
                 else
                 {
@@ -48,7 +48,7 @@ namespace T_L_O_B_O
 
                     (int)(spriteRender.Rectangle.Width * scale),
                     (int)(spriteRender.Rectangle.Height * scale)
-               );
+                );
                 }
             }
         }
@@ -75,23 +75,13 @@ namespace T_L_O_B_O
             Rectangle rightLine = new Rectangle(CollisionBox.X + CollisionBox.Width, CollisionBox.Y, 1, CollisionBox.Height);
             Rectangle leftLine = new Rectangle(CollisionBox.X, CollisionBox.Y, 1, CollisionBox.Height);
 
+#if DEBUG
+            spriteBatch.Draw(texture2D, topLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(texture2D, bottomLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(texture2D, rightLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(texture2D, leftLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+#endif
 
-            if (isCollideWith)
-            {
-                spriteBatch.Draw(texture2D, topLine, null, Color.Green, 0, Vector2.Zero, SpriteEffects.None, 1);
-                spriteBatch.Draw(texture2D, bottomLine, null, Color.Green, 0, Vector2.Zero, SpriteEffects.None, 1);
-                spriteBatch.Draw(texture2D, rightLine, null, Color.Green, 0, Vector2.Zero, SpriteEffects.None, 1);
-                spriteBatch.Draw(texture2D, leftLine, null, Color.Green, 0, Vector2.Zero, SpriteEffects.None, 1);
-
-            }
-            else
-            {
-                spriteBatch.Draw(texture2D, topLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
-                spriteBatch.Draw(texture2D, bottomLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
-                spriteBatch.Draw(texture2D, rightLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
-                spriteBatch.Draw(texture2D, leftLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
-
-            }
         }
 
         public void LoadContent(ContentManager Content)

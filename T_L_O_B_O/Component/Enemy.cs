@@ -20,7 +20,6 @@ namespace T_L_O_B_O
         public Enemy(GameObject gameobject) : base(gameobject)
         {
             speed = 50;
-            direction = DIRECTION.Front;
             animator = (gameobject.GetComponent("Animator")as Animator);
         }
         #endregion
