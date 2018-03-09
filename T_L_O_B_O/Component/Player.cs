@@ -77,13 +77,17 @@ namespace T_L_O_B_O
                 }
                 if (keyState.IsKeyDown(Keys.E))
                 {
+                    //attack stuff
                     strategy = new Attack(animator);
+                    canMove = false;
                 }
                 else if (isgrounded == true)
                 {
                     if (keyState.IsKeyDown(Keys.Space))
                     {
+                        //jump 
                         strategy = new Jump(animator, this);
+                        
                     }
                 }
                 
@@ -126,7 +130,7 @@ namespace T_L_O_B_O
             }
             if (animationName.Contains("Attack"))
             {
-                //promt i finished an attack
+                canMove = true;
 
             }
             if (animationName.Contains("Jump"))
@@ -151,6 +155,10 @@ namespace T_L_O_B_O
                 gameObject.Transform.Velocity += new Vector2(0, -gameObject.Transform.Velocity.Y);
                 gameObject.Transform.CorrectMove(new Vector2(0, other.CollisionBox.Top - collider.CollisionBox.Bottom + 1));
             }
+            else if (collider.CollisionBox.Top <= other.CollisionBox.Bottom && collider.CollisionBox.Top + 30 >= other.CollisionBox.Bottom)
+            {
+                gameObject.Transform.CorrectMove(new Vector2(collider.CollisionBox.Top - other.CollisionBox.Bottom -1, 0));
+            }
             else if (collider.CollisionBox.Right >= other.CollisionBox.Left && collider.CollisionBox.Right - 10 <= other.CollisionBox.Left)
             {
                 gameObject.Transform.CorrectMove(new Vector2(other.CollisionBox.Left - collider.CollisionBox.Right + 1, 0));
@@ -159,10 +167,6 @@ namespace T_L_O_B_O
             {
  
                 gameObject.Transform.CorrectMove(new Vector2(other.CollisionBox.Right - collider.CollisionBox.Left, 0));
-            }
-            else if (collider.CollisionBox.Top <= other.CollisionBox.Bottom && collider.CollisionBox.Top + 30 >= other.CollisionBox.Bottom)
-            {
-                gameObject.Transform.CorrectMove(new Vector2(other.CollisionBox.Top - collider.CollisionBox.Top, 0));
             }
         }
 
@@ -181,7 +185,7 @@ namespace T_L_O_B_O
             {
                 if (isgrounded == true)
                 {
-                    GameObject.Transform.ForceTranslate(new Vector2(0, -15));
+                    GameObject.Transform.ForceTranslate(new Vector2(0, -8));
 
                     isgrounded = false;
                 }
