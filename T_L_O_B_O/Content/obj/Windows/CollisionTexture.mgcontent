@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/MIKZ/Source/Repos/TOTBBO/T_L_O_B_O/Content/CollisionTexture.png</SourceFile>
-  <SourceTime>2018-03-07T15:19:12.907398+01:00</SourceTime>
-  <DestFile>C:/Users/MIKZ/Source/Repos/TOTBBO/T_L_O_B_O/Content/bin/Windows/CollisionTexture.xnb</DestFile>
-  <DestTime>2018-03-08T21:06:21.3807369+01:00</DestTime>
+  <SourceFile>C:/Users/MIKZ/source/repos/TOTBBO2/T_L_O_B_O/Content/CollisionTexture.png</SourceFile>
+  <SourceTime>2018-03-01T15:10:55.9160271+01:00</SourceTime>
+  <DestFile>C:/Users/MIKZ/source/repos/TOTBBO2/T_L_O_B_O/Content/bin/Windows/CollisionTexture.xnb</DestFile>
+  <DestTime>2018-03-09T10:18:00.3588078+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
