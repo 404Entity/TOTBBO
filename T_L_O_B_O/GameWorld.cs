@@ -96,8 +96,6 @@ namespace T_L_O_B_O
             base.Initialize();
         }
 
-        Texture2D Chest;
-
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
@@ -145,7 +143,7 @@ namespace T_L_O_B_O
             {
                 foreach (GameObject item in gameObjectList)
                 {
-                    if ((item.GetComponent("Enemy") != null))
+                    if ((item.GetComponent("Enemy") != null) || (item.GetComponent("Scissor") != null))
                     {
                        enemypool.ReleaseObject(item);
                        break;
@@ -157,12 +155,17 @@ namespace T_L_O_B_O
             {
                 item.Update(gameTime);
             }
+            //adds new item to the loop
             foreach (GameObject item in addList)
             {
-                item.LoadContent(Content);
-                gameObjectList.Add(item);
+                if (item != null)
+                {
+                    item.LoadContent(Content);
+                    gameObjectList.Add(item);
+                }
             }
             addList.Clear();
+            //removes items from the loop
             foreach (GameObject item in removeList)
             {
                 gameObjectList.Remove(item);
@@ -192,7 +195,7 @@ namespace T_L_O_B_O
                 item.Draw(spriteBatch);
             }
             spriteBatch.End();
-            // UI Sprites not affektede
+            // UI Sprites not affected
             spriteBatch.Begin();
             spriteBatch.End();
             base.Draw(gameTime);

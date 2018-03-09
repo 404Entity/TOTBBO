@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
 namespace T_L_O_B_O
 {
-    enum DIRECTION { Back, Right, Front, Left };
+    enum DIRECTION {  Right, Left };
     class Player : Component, IUpdateable, ILoadable, IAnimateable, ICollisionStay, IGravity, ICollisionExit, ICollisionEnter
     {
         
@@ -31,7 +31,6 @@ namespace T_L_O_B_O
         public Player(GameObject gameobject) : base(gameobject)
         {
             speed = 100;
-            direction = DIRECTION.Front;
             animator = (gameobject.GetComponent("Animator") as Animator);
             canMove = true;
             isgrounded = false;
@@ -51,21 +50,15 @@ namespace T_L_O_B_O
                 if (keyState.IsKeyDown(Keys.W) || keyState.IsKeyDown(Keys.D) || keyState.IsKeyDown(Keys.S) || keyState.IsKeyDown(Keys.A))
                 {
                     Vector2 translation = Vector2.Zero;
-                    if (keyState.IsKeyDown(Keys.W))
-                    {
-                        direction = DIRECTION.Back;
-                        translation += new Vector2(0, 2);
-                    }
-                    else if (keyState.IsKeyDown(Keys.D))
+
+                   
+                    if (keyState.IsKeyDown(Keys.D))
+
                     {
                         direction = DIRECTION.Right;
                         translation += new Vector2(2f, 0);
                     }
-                    else if (keyState.IsKeyDown(Keys.S))
-                    {
-                        direction = DIRECTION.Front;
-                        translation += new Vector2(0, -2);
-                    }
+
                     else if (keyState.IsKeyDown(Keys.A))
                     {
                         direction = DIRECTION.Left;
@@ -98,6 +91,15 @@ namespace T_L_O_B_O
             }
             Fall(isgrounded);
             Jump();
+            if (gameObject.Transform.Position.Y > 1000)
+            {
+                Form1 f = new Form1();
+                f.Show();
+                while (true)
+                {
+
+                }
+            }
         }
         public void CreateAnimation()
         {
@@ -159,9 +161,10 @@ namespace T_L_O_B_O
             }
             else if (collider.CollisionBox.Left <= other.CollisionBox.Right && collider.CollisionBox.Left + 10 >= other.CollisionBox.Right)
             {
+ 
                 gameObject.Transform.CorrectMove(new Vector2(other.CollisionBox.Right - collider.CollisionBox.Left, 0));
             }
-            else if (collider.CollisionBox.Top <= other.CollisionBox.Bottom && collider.CollisionBox.Top + 10 >= other.CollisionBox.Bottom)
+            else if (collider.CollisionBox.Top <= other.CollisionBox.Bottom && collider.CollisionBox.Top + 30 >= other.CollisionBox.Bottom)
             {
                 gameObject.Transform.CorrectMove(new Vector2(other.CollisionBox.Top - collider.CollisionBox.Top, 0));
             }
@@ -196,19 +199,10 @@ namespace T_L_O_B_O
 
         public void OnCollisionEnter(Collider other)
         {
-            /*
-            Collider collider = (Collider)gameObject.GetComponent("Collider");
+            if ((ChestOfAThousandGrogs)other.GameObject.GetComponent("ChestOfAThousandGrogs") != null)
+            {
 
-            if (collider.CollisionBox.Bottom >= other.CollisionBox.Top && collider.CollisionBox.Bottom - 10 <= other.CollisionBox.Top)
-            {
-                isgrounded = true;
-                gameObject.Transform.Translate(new Vector2(0, other.CollisionBox.Top - collider.CollisionBox.Bottom + 1));
             }
-            else if (collider.CollisionBox.Right >= other.CollisionBox.Left && collider.CollisionBox.Right - 10 <= other.CollisionBox.Left)
-            {
-                gameObject.Transform.Translate(new Vector2(other.CollisionBox.Left - collider.CollisionBox.Right - 1));
-            }
-            */
         }
         #endregion
     }

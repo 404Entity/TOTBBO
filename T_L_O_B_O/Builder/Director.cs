@@ -10,6 +10,11 @@ namespace T_L_O_B_O
     class Director
     {
         private IBuilder builder;
+        public IBuilder Builder
+        {
+            get { return builder; }
+            set { builder = value; }
+        }
         public Director(IBuilder builder)
         {
             this.builder = builder;
@@ -19,5 +24,12 @@ namespace T_L_O_B_O
             builder.BuildGameObject(position);
             return builder.GetResult();
         }
+        //overide that allows Tile IDing 
+        public GameObject Construct(Vector2 position, int id)
+        {
+            builder.BuildGameObject(position,id);
+            return builder.GetResult();
+        }
+
     }
 }

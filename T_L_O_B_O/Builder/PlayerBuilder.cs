@@ -21,6 +21,11 @@ namespace T_L_O_B_O
             buildObject = Player;
         }
 
+        public void BuildGameObject(Vector2 position, int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public GameObject GetResult()
         {
             return buildObject;

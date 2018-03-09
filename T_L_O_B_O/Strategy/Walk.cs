@@ -31,17 +31,8 @@ namespace T_L_O_B_O
         
                 animator.PlayAnimation("WalkLeft");
             }
-            if (ref_direction == DIRECTION.Back)
-            {
-  
-                animator.PlayAnimation("WalkBack");
-            }
-            if (ref_direction == DIRECTION.Front)
-            {
-             
-                animator.PlayAnimation("WalkFront");
             }
        
-        }
+        
     }
 }
